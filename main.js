@@ -1,3 +1,4 @@
+//community drop rate guide for combat: http://services.runescape.com/m=rswiki/en/Community_-_Drop_Rate_Guide
 var hero_wc_xp = 0;
 var hero_wc_lvl = 1;
 var hero_fm_xp = 0;
@@ -104,7 +105,7 @@ var bronze_hatchet = {
 	price:179,
 	accuracy:110,
 	damage:30,
-	speed:5
+	speed:5,
 };
 
 var iron_hatchet = {
@@ -178,14 +179,14 @@ var dragon_hatchet = {
 };
 
 var woodcutters = [0,0,0,0,0,0,0,0,0,0]; //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
-var treenames = ["idle_", "", "oak_", "willow_", "teak_", "maple_", "mahogany_", "yew_", "magic_", "elder_"] //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
+var treenames = ["idle_","","oak_","willow_","teak_","maple_","mahogany_","yew_","magic_","elder_"}; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
 
 var hero_location = "none";
 	document.getElementById("hero_location").innerHTML = hero_location; //display hero's location
 var current_hatchet = bronze_hatchet; //should be no_hatchet to start; figure equipping hatchets later
 
 //loop to initialize display of all log types and all woodcutter locations
-for (i = 0; i <= 10; i++){
+for (i = 0; i <= 9; i++){
 	if (i > 0){ //there are no "idle logs"
 		var logtype = treenames[i];
 		logtype = logtype.concat("logs.total");
@@ -200,22 +201,18 @@ for (i = 0; i <= 10; i++){
 	document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl;
 	document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp;
 
-//function nametreestring(treeidnumber){ //this function takes the treeid and produces a string 
-//	var location = treenames(treeidnumber);
-//	location = location.concat("tree_woodcutters")
-//}
-	
+//for referencing objects, keep http://stackoverflow.com/questions/6393943/convert-javascript-string-in-dot-notation-into-an-object-reference/6394168#6394168 in my back pocket
 function treeClickup(treeid){ //treeid is the ID if the tree passed from the HTML file - depending on the tree the user clicks on
 //NOTE!!!!!!!!!!!!! This doesn't yet checkt to make sure the hero's woodcutting level is high enough yet.
-	if (woodcutters[0] > 0){ //must have at least 1 idle woodcutter
+	var tree_level = treenames[treeid];
+	tree_level = tree_level.concat("logs.level");
+	if (woodcutters[0] > 0 && hero_wc_lvl >= window[tree_level]){ //must have at least 1 idle woodcutter and the required wooducutting level
 		woodcutters[treeid] = woodcutters[treeid] + 1; //add one woodcutter to the location
 		woodcutters[0] = woodcutters[0] - 1; //remove 1 idle woodcutter
 		document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
-		var location = treenames(treeid); // turn the location of the new tree in to text to re-display
-		location = location.concat("tree_woodcutters"); //the location string represents the variable name. it is appropriate for the getElementByID, because it is already a string.
-		//to use it as the variable name below (.innerHTML = variable_name;), we should probably use objects. I don't know how to do it properly, but
-		// http://stackoverflow.com/questions/5613834/convert-string-to-variable-name-in-javascript seems to have the answer
-		document.getElementById(location).innerHTML = location; //display number of new woodcutters
+		var tree_location = treenames[treeid]; // turn the location of the new tree in to text to re-display
+		tree_location = tree_location.concat("tree_woodcutters"); //the location string represents the variable name
+		document.getElementById(location).innerHTML = window[tree_location]; //display number of new woodcutters
 	}
 	else {alert("You do not have any idle woodcutters");}
 }
@@ -225,15 +222,15 @@ function treeClickdown(treeid){
 		woodcutters[treeid] = woodcutters[treeid] - 1; //take 1 woodcutter from the tree
 		woodcutters[0] = woodcutters[0] + 1; //add an idle woodcutter
 		document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
-		var location = treenames(treeid); // turn the location of the new tree in to text to re-display
-		location = location.concat("tree_woodcutters");
-		document.getElementById(location).innerHTML = location; //display number of new woodcutters
+		var tree_location = treenames[treeid]; // turn the location of the new tree in to text to re-display
+		tree_location = tree_location.concat("tree_woodcutters"); //the location string represents the variable name
+		document.getElementById(location).innerHTML = window[tree_location]; //display number of new woodcutters
 	}
 	else {alert("You do not have any woodcutters at that tree");}
 }
 
 function cut_trees(){
-	for (i = 1; i <= 10; i++){ //run through every tree type
+	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
 		if (woodcutters[i] > 0) { //only if the woodcutters are here
 			for (j = 1; i <= woodcutters[i]; j++){
 				var hero_pow = Math.pow(hero_wc_lvl, 3); //3 lines: figure out the chance of cutting a log per tick
@@ -241,12 +238,12 @@ function cut_trees(){
 				var cutchance = 0.05*accuracy/110; 
 				if (Math.random() < cutchance) {
 					var helperflag = false;
-					if  (hero_wc_lvl % 11 == 10) {
+					if  (hero_wc_lvl % 11 === 10) {
 						helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc follower
 					}
 					var logtype = treenames[i];
 					logtype = logtype.concat("logs.total"); //this generates the name of the log type, e.g. oak_logs.total
-					logtype = logtype + 1; //gain a log
+					logtype = window[logtype] + 1; //gain a log
 					document.getElementById(logtype).innerHTML = logtype;; //display # of logs
 					
 					logtype = treenames[i].concat("logs.wc_experience"); //sets it to the type of logs' experience value
@@ -257,7 +254,7 @@ function cut_trees(){
 						hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
 						document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
 					}
-					if (helperflag == true && hero_wc_lvl % 11 == 0) {
+					if (helperflag === true && hero_wc_lvl % 11 === 0) {
 						woodcutters = woodcutters + 1; //if dinged level XX, add a woodcutter
 						document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
 					}
@@ -280,14 +277,14 @@ function herooak_treeClick(){
 }
 
 function herotree(){
-	if (hero_location == "tree") { //only if the hero is currently cutting here
+	if (hero_location === "tree") { //only if the hero is currently cutting here
 		var hero_pow = Math.pow(hero_wc_lvl, 3);
 		var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
 		var cutchance = 0.05*accuracy/110; //figure out the chance of cutting a log per tick
 		if (Math.random() < cutchance) {
 			var helperflag = false;
 			var last_wc_digit = finaldigit(hero_wc_lvl);
-			if  (last_wc_digit == 8) {
+			if  (last_wc_digit === 8) {
 				helperflag = true; //this checks to see if levelling up to 9, we gain a wc follower
 			}
 			logs.total = logs.total + 1; //gain a log
@@ -299,7 +296,7 @@ function herotree(){
 				document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
 			}
 			last_wc_digit = finaldigit(hero_wc_lvl);
-			if (helperflag == true && last_wc_digit == 9) {
+			if (helperflag === true && last_wc_digit === 9) {
 				woodcutters = woodcutters + 1; //if dinged level 9, add a woodcutter
 				document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
 			}
@@ -308,14 +305,14 @@ function herotree(){
 }
 
 function herooak_tree(){
-	if (hero_location == "oak_tree") { //only if the hero is currently cutting here
+	if (hero_location === "oak_tree") { //only if the hero is currently cutting here
 	var hero_pow = Math.pow(hero_wc_lvl, 3);
 		var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
 		var cutchance = 0.05*accuracy/257; //figure out the chance of cutting an oak log per tick
 		if (Math.random() < cutchance) {
 			var helperflag = false;
 			var last_wc_digit = finaldigit(hero_wc_lvl);
-			if  (last_wc_digit == 8) {
+			if  (last_wc_digit === 8) {
 				helperflag = true; //this checks to see if levelling up to 9, we gain a wc follower
 			}
 			oak_logs.total = oak_logs.total + 1; //gain an oak log
@@ -327,7 +324,7 @@ function herooak_tree(){
 				document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
 			}
 			last_wc_digit = finaldigit(hero_wc_lvl);
-			if (helperflag == true && last_wc_digit == 9) {
+			if (helperflag === true && last_wc_digit === 9) {
 				woodcutters = woodcutters + 1; //if dinged level 9, add a woodcutter
 				document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
 			}
