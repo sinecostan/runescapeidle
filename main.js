@@ -181,8 +181,8 @@ var dragon_hatchet = {
 var woodcutters = [0,0,0,0,0,0,0,0,0,0]; //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
 var treenames = ["idle_","","oak_","willow_","teak_","maple_","mahogany_","yew_","magic_","elder_"}; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
 
-var hero_location = "none";
-	document.getElementById("hero_location").innerHTML = hero_location; //display hero's location
+var hero_location = ["idle",0];
+	document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location
 var current_hatchet = bronze_hatchet; //should be no_hatchet to start; figure equipping hatchets later
 
 //loop to initialize display of all log types and all woodcutter locations
@@ -232,32 +232,36 @@ function treeClickdown(treeid){
 function cut_trees(){
 	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
 		if (woodcutters[i] > 0) { //only if the woodcutters are here
-			for (j = 1; i <= woodcutters[i]; j++){
-				var hero_pow = Math.pow(hero_wc_lvl, 3); //3 lines: figure out the chance of cutting a log per tick
-				var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
-				var cutchance = 0.05*accuracy/110; 
+			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
+			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
+			hero_pow = Math.pow(logs.level, 3); //re-used for the log's value
+			var loglevel = treenames[i]; //get the tree name
+			loglevel = loglevel.concat("logs.level"); //get the log level
+			var defense = (0.0008*hero_pow+4*loglevel+40); //NOTE TO SELF: make sure this works - loglevel previously a string, make sure it's processed as a number		
+			var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
+			for (j = 1; i <= woodcutters[i]; j++){ //try chopping a log once per woodcutter
 				if (Math.random() < cutchance) {
 					var helperflag = false;
-					if  (hero_wc_lvl % 11 === 10) {
-						helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc follower
+					if  (hero_wc_lvl % 11 !== 0) {
+						helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc followerr
 					}
 					var logtype = treenames[i];
 					logtype = logtype.concat("logs.total"); //this generates the name of the log type, e.g. oak_logs.total
 					logtype = window[logtype] + 1; //gain a log
-					document.getElementById(logtype).innerHTML = logtype;; //display # of logs
+					document.getElementById(logtype).innerHTML = logtype; //display # of logs
 					
 					logtype = treenames[i].concat("logs.wc_experience"); //sets it to the type of logs' experience value
-					hero_wc_xp = hero_wc_xp + logtype; //gain xp for cutting the log
+					hero_wc_xp = hero_wc_xp + window[logtype]; //gain xp for cutting the log
 					document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
 					
 					if (hero_wc_xp > xp_table[hero_wc_lvl]) {
 						hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
 						document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
-					}
-					if (helperflag === true && hero_wc_lvl % 11 === 0) {
-						woodcutters = woodcutters + 1; //if dinged level XX, add a woodcutter
-						document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
-					}
+						if (helperflag === true && hero_wc_lvl % 11 === 0) {
+							woodcutters[0] = woodcutters[0] + 1; //if dinged level XX, add a woodcutter
+							document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
+						}	
+					}	
 				}
 			}
 		}
@@ -265,69 +269,49 @@ function cut_trees(){
 }
 
 
-function herotreeClick(){
-	hero_location = "tree";
-	document.getElementById("hero_location").innerHTML = hero_location; //display hero's location
-}
-
-function herooak_treeClick(){
-	if(hero_wc_lvl >= 15){hero_location = "oak_tree";}
-	else{alert("You need 15 woodcutting to chop down oak trees.")}
-	document.getElementById("hero_location").innerHTML = hero_location; //display hero's location
+function herotreeClick(treeid){
+	var treelevel = treenames[treeid]; //used to fetch the level of this particular log type
+	treelevel = treelevel.concat("logs.level"); 
+	if (hero_wc_lvl >= window[treelevel]){ //=== not used because we are checking a number vs a string that will be equal
+		hero_location[0] = treenames[treeid].concat("tree"); //make sure this doesn't need to be two lines. hero_location is already declared.
+		hero_location[1] = treeid; //set the treeid of the hero location
+		document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location
+	}
+	else{alert("You do not have the required level to chop down these trees.")}
 }
 
 function herotree(){
-	if (hero_location === "tree") { //only if the hero is currently cutting here
+	if (hero_location[1] !== 0) { //only if the hero is not idle
 		var hero_pow = Math.pow(hero_wc_lvl, 3);
 		var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
-		var cutchance = 0.05*accuracy/110; //figure out the chance of cutting a log per tick
+		hero_pow = Math.pow(logs.level, 3); //re-used for the log's value
+		var loglevel = treenames[hero_location[1]]; //get the tree name from the hero's location
+		loglevel = loglevel.concat("logs.level"); //get the log level
+		var defense = (0.0008*hero_pow+4*loglevel+40); //NOTE TO SELF: make sure this works - loglevel previously a string, make sure it's processed as a number		
+		var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
 		if (Math.random() < cutchance) {
 			var helperflag = false;
-			var last_wc_digit = finaldigit(hero_wc_lvl);
-			if  (last_wc_digit === 8) {
-				helperflag = true; //this checks to see if levelling up to 9, we gain a wc follower
+			if  (hero_wc_lvl % 11 !== 0) {
+				helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc followerr
 			}
-			logs.total = logs.total + 1; //gain a log
-			document.getElementById("logs.total").innerHTML = logs.total; //display # of logs
-			hero_wc_xp = hero_wc_xp + 25; //gain xp for cutting the log
+			var logtype = treenames[hero_location[1]];
+			logtype = logtype.concat("logs.total"); //this generates the name of the log type, e.g. oak_logs.total
+			logtype = window[logtype] + 1; //gain a log
+			document.getElementById(logtype).innerHTML = logtype; //display # of logs
+			
+			logtype = treenames[hero_location[1]].concat("logs.wc_experience"); //sets it to the type of logs' experience value
+			hero_wc_xp = hero_wc_xp + window[logtype]; //gain xp for cutting the log
 			document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
+			
 			if (hero_wc_xp > xp_table[hero_wc_lvl]) {
 				hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
 				document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
+				if (helperflag === true && hero_wc_lvl % 11 === 0) {
+					woodcutters[0] = woodcutters[0] + 1; //if dinged level XX, add a woodcutter
+					document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
+				}
 			}
-			last_wc_digit = finaldigit(hero_wc_lvl);
-			if (helperflag === true && last_wc_digit === 9) {
-				woodcutters = woodcutters + 1; //if dinged level 9, add a woodcutter
-				document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
-			}
-		}
-	}
-}
 
-function herooak_tree(){
-	if (hero_location === "oak_tree") { //only if the hero is currently cutting here
-	var hero_pow = Math.pow(hero_wc_lvl, 3);
-		var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*current_hatchet.accuracy;
-		var cutchance = 0.05*accuracy/257; //figure out the chance of cutting an oak log per tick
-		if (Math.random() < cutchance) {
-			var helperflag = false;
-			var last_wc_digit = finaldigit(hero_wc_lvl);
-			if  (last_wc_digit === 8) {
-				helperflag = true; //this checks to see if levelling up to 9, we gain a wc follower
-			}
-			oak_logs.total = oak_logs.total + 1; //gain an oak log
-			document.getElementById("oak_logs.total").innerHTML = oak_logs.total; //display # of oak logs
-			hero_wc_xp = hero_wc_xp + 37.5; //gain xp for cutting the log
-			document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
-			if (hero_wc_xp > xp_table[hero_wc_lvl]) {
-				hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
-				document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
-			}
-			last_wc_digit = finaldigit(hero_wc_lvl);
-			if (helperflag === true && last_wc_digit === 9) {
-				woodcutters = woodcutters + 1; //if dinged level 9, add a woodcutter
-				document.getElementById("woodcutters").innerHTML = woodcutters; //add an idle woodcutter
-			}
 		}
 	}
 }
@@ -349,6 +333,5 @@ window.setInterval(function(){
 	
 	herotree();
 	cut_trees();
-	herooak_tree();
 	
 }, 60);
