@@ -179,7 +179,7 @@ var dragon_hatchet = {
 };
 
 var woodcutters = [0,0,0,0,0,0,0,0,0,0]; //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
-var treenames = ["idle_","","oak_","willow_","teak_","maple_","mahogany_","yew_","magic_","elder_"}; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
+var treenames = ["idle_","","oak_","willow_","teak_","maple_","mahogany_","yew_","magic_","elder_"]; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
 
 var hero_location = ["idle",0];
 	document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location
