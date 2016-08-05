@@ -89,17 +89,6 @@ var elder_logs = {
 };
 
 var no_hatchet = {
-	name:'no_hatchet',
-	total:1,
-	level:0,
-	price:0,
-	accuracy:0,
-	damage:0,
-	speed:4
-	durability:1
-};
-
-var no_hatchet = {
 	name:'no hatchet',
 	total:0, //this means the hatchet will always exit loops that require a hatchet equipped
 	level:1,
