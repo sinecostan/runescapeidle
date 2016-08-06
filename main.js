@@ -7,88 +7,85 @@ var firemakers = 0;
 var hatchet_durability = 100; //durability of currently equipped hatchet
 var xp_table = [0,83,174,276,388,512,650,801,1137,1507,	1915,	2367,	2865,	3413,	4021,	4691,	5429,	6245,	7595,	9086,	10730,	12548,	14549,	16760,	19202,	21896,	24866,	28148,	32976,	38304,	44184,	50676,	57840,	65748,	74476,	84112,	94744,	106484,	122684,	140564,	160299,	182089,	206139,	232689,	262004,	294359,	330079,	369514,	421756,	479428,	543100,	613390,	690994,	776662,	871246,	975670,	1090954,	1218226,	1382166,	1563158,	1762980,	1983592,	2227157,	2496069,	2792960,	3120742,	3482635,	3882188,	4386340,	4942948,	5557492,	6235988,	6985092,	7812156,	8725300,	9733476,	10846580,	12075532,	13602004,	15287344,	17148094,	19202515,	21470758,	23975089,	26740078,	29792860,	33163378,	36884716,	41449906,	46490276,	52055266,	58199486,	64983246,	72473096,	80742536,	89872726,	99953246,	111083016,	124600091];
 
-var logs = {
+var log_types = {
+	logs:{
 	name:'logs',
+	cutters:0,
 	total:0,
 	level:1,
 	price:97,
 	wc_experience:25,
 	fm_experience:50
-};
-
-var oak_logs = {
+	},
+	oak:{
 	name:'oak logs',
+	cutters:0,
 	total:0,
 	level:15,
 	price:77,
 	wc_experience:37.5,
 	fm_experience:85
-};
-
-var willow_logs = {
+	},
+	willow:{
 	name:'willow logs',
 	total:0,
 	level:30,
 	price:23,
 	wc_experience:67.5,
 	fm_experience:105
-};
-
-var teak_logs = {
+	},
+	teak:{
 	name:'teak logs',
 	total:0,
 	level:35,
 	price:98,
 	wc_experience:85,
 	fm_experience:120
-};
-
-var maple_logs = {
+	},
+	maple:{
 	name:'maple logs',
 	total:0,
 	level:45,
 	price:25,
 	wc_experience:100,
 	fm_experience:155
-};
-
-var mahogany_logs = {
+	},
+	mahogany:{
 	name:'mahogany logs',
 	total:0,
 	level:50,
 	price:508,
 	wc_experience:125,
 	fm_experience:180
-};
-
-var yew_logs = {
+	},
+	yew:{
 	name:'yew logs',
 	total:0,
 	level:60,
 	price:174,
 	wc_experience:175,
 	fm_experience:240
-};
-
-var magic_logs = {
+	},
+	magic:{
 	name:'magic logs',
 	total:0,
 	level:75,
 	price:628,
 	wc_experience:250,
 	fm_experience:309.5
-};
-
-var elder_logs = {
+	},
+	elder:{
 	name:'elder logs',
 	total:0,
 	level:90,
 	price:4967,
 	wc_experience:325,
 	fm_experience:449
+	},
 };
 
-var no_hatchet = {
+var hatchet_types = {
+	no:{
 	name:'no hatchet',
 	total:0, //this means the hatchet will always exit loops that require a hatchet equipped
 	level:1,
@@ -97,20 +94,18 @@ var no_hatchet = {
 	damage:1,
 	speed:5,
 	durability:1
-}
-
-var bronze_hatchet = {
+	},
+	bronze:{
 	name:'bronze hatchet',
-	total:1,
+	total:0,
 	level:1,
 	price:179,
 	accuracy:110,
 	damage:30,
 	speed:5,
 	durability:110
-};
-
-var iron_hatchet = {
+	},
+	iron:{
 	name:'iron hatchet',
 	total:0,
 	level:10,
@@ -119,9 +114,8 @@ var iron_hatchet = {
 	damage:61,
 	speed:5,
 	durability:202
-};
-
-var steel_hatchet = {
+	},
+	steel:{
 	name:'steel hatchet',
 	total:0,
 	level:20,
@@ -130,9 +124,8 @@ var steel_hatchet = {
 	damage:122,
 	speed:5,
 	durability:316
-};
-
-var black_hatchet = {
+	},
+	black:{
 	name:'black hatchet',
 	total:0,
 	level:25,
@@ -141,9 +134,8 @@ var black_hatchet = {
 	damage:147,
 	speed:5,
 	durability:381
-};
-
-var mithril_hatchet = {
+	},
+	mithril:{
 	name:'mithril hatchet',
 	total:0,
 	level:30,
@@ -152,9 +144,8 @@ var mithril_hatchet = {
 	damage:183,
 	speed:5,
 	durability:454
-};
-
-var adamant_hatchet = {
+	},
+	adamant:{
 	name:'adamant hatchet',
 	total:0,
 	level:40,
@@ -162,10 +153,9 @@ var adamant_hatchet = {
 	accuracy:628,
 	damage:245,
 	speed:5,
-	durability:628
-};
-
-var rune_hatchet = {
+	durability:628 
+	},
+	rune:{
 	name:'rune hatchet',
 	total:0,
 	level:50,
@@ -174,9 +164,8 @@ var rune_hatchet = {
 	damage:306,
 	speed:5,
 	durability:850
-};
-
-var dragon_hatchet = {
+	},
+	dragon:{
 	name:'dragon hatchet',
 	total:0,
 	level:60,
@@ -185,71 +174,78 @@ var dragon_hatchet = {
 	damage:367,
 	speed:5,
 	durability:1132
+	},
 };
 
 var woodcutters = [0,0,0,0,0,0,0,0,0,0]; //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
-var treenames = ["idle_","","oak_","willow_","teak_","maple_","mahogany_","yew_","magic_","elder_"]; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
+var treenames = ["idle","logs","oak","willow","teak","maple","mahogany","yew","magic","elder"]; //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
+var metaltype = ["no","bronze","iron","steel","black","mithril","adamant","rune","dragon"] //hatchet metal types
 
 var hero_location = ["idle",0];
 	document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location
-var current_hatchet = "no_hatchet"; //start with no hatchet equipped
+var current_hatchet = "no"; //start with no hatchet equipped
 
 //loop to initialize display of all log types and all woodcutter locations
 for (i = 0; i <= 9; i++){
-	if (i > 0){ //there are no "idle logs"
-		var logtype = treenames[i];
-		logtype = logtype.concat("logs.total");
-		document.getElementById(logtype).innerHTML = logtype;
+	if (i > 0){ //there are no "idle logs" or "no hatchet" to display
+		var logtype = treenames[i].concat(".total");
+		document.getElementById(logtype).innerHTML = log_types[treenames[i]]["total"];
 	}
-	var locations = woodcutters[i];
-	locations = locations.concat("tree_woodcutters");
-	document.getElementById(locations).innerHTML = locations;
+	var locations = treenames[i];
+	locations = locations.concat("_tree_woodcutters");
+	document.getElementById(locations).innerHTML = woodcutters[i];
 }
 
-	document.getElementById("current_hatchet.name").innerHTML = window[current_hatchet.concat(".name")]; //display hero's equipped hatchet
+for (i = 1; i <= 8; i++){ //loop to give the player some hatchets for DEBUGGING PURPOSES
+	hatchet_types[metaltype[i]]["total"] = 100;
+	var logtype = metaltype[i].concat("_hatchet.total");
+	document.getElementById(logtype).innerHTML = hatchet_types[metaltype[i]]["total"];
+	logtype = metaltype[i].concat("_hatchet.durability");
+	document.getElementById(logtype).innerHTML = hatchet_types[metaltype[i]]["durability"];
+}
+
+	document.getElementById("current_hatchet.name").innerHTML = hatchet_types[current_hatchet]["name"]; //display hero's equipped hatchet
 	document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl;
 	document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp;
 
 function equip_hatchet(hatchet_type){ //hatchet type is passed as the type of metal, e.g. bronze for bronze_hatchet
-	var hatchet_var = "_hatchet"; //used to pass around the hatchet variables
-	hatchet_name = hatchet_type.concat(hatchet_name) //should now equal bronze_hatchet
-	if (window[hatchet_name.concat(".total")] > 0){  //this would be checking the variable for bronze_hatchet.total - do we have any hatchets?
+	if (hatchet_types[hatchet_type]["total"] > 0 || hatchet_type === 'no'){  //this would be checking the variable for bronze_hatchet.total - do we have any hatchets?
 		//there is no check to make sure the durability is not 0. If you have 1 hatchet and it breaks, you will be reduced to 0 hatchets, 100% durability - so when you buy a new hatchet, it comes fully repaired.
-		if (window[hatchet_name.concat(".level") < hero_wc_lvl ]){ //hero must be the required level to equip it
-			current_hatchet = hatchet_name; //we have equipped bronze_hatchet - durability is manipulated directly through current_hatchet
+		if (hatchet_types[hatchet_type]["level"] <= hero_wc_lvl ){ //hero must be the required level to equip it
+			current_hatchet = hatchet_type; //we have equipped bronze_hatchet - durability is manipulated directly through current_hatchet
+			document.getElementById("current_hatchet.name").innerHTML = hatchet_types[current_hatchet]["name"]; //display hero's equipped hatchet
 		}
 		else {alert("You do not have the required level to equip this hatchet.");}
 	}
 	else {alert("You do not have any of these hatchets.");}
 }
 
+woodcutters[0] = 10;
 //for referencing objects, keep http://stackoverflow.com/questions/6393943/convert-javascript-string-in-dot-notation-into-an-object-reference/6394168#6394168 in my back pocket
 function treeClickup(treeid){ //treeid is the ID if the tree passed from the HTML file - depending on the tree the user clicks on
-	var tree_level = treenames[treeid];
-	tree_level = tree_level.concat("logs.level");
-	if (woodcutters[0] > 0 && hero_wc_lvl >= window[tree_level]){ //must have at least 1 idle woodcutter and the required wooducutting level
+	if (woodcutters[0] > 0 && hero_wc_lvl >= log_types[treenames[treeid]]["level"]){ //must have at least 1 idle woodcutter and the required woodcutting level
 		woodcutters[treeid] = woodcutters[treeid] + 1; //add one woodcutter to the location
 		woodcutters[0] = woodcutters[0] - 1; //remove 1 idle woodcutter
-		document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
+		document.getElementById("idle_tree_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
 		var tree_location = treenames[treeid]; // turn the location of the new tree in to text to re-display
-		tree_location = tree_location.concat("tree_woodcutters"); //the location string represents the variable name
-		document.getElementById(location).innerHTML = window[tree_location]; //display number of new woodcutters
+		tree_location = tree_location.concat("_tree_woodcutters"); //the location string represents the variable name
+		document.getElementById(tree_location).innerHTML = woodcutters[treeid]; //display number of new woodcutters
 	}
-	else {alert("You do not have any idle woodcutters.");}
+	else {alert("You do not have any idle woodcutters or the required level to cut this tree.");}
 }
 
 function treeClickdown(treeid){
 	if (woodcutters[treeid] > 0){ //must have at least 1 woodcutter at that tree
 		woodcutters[treeid] = woodcutters[treeid] - 1; //take 1 woodcutter from the tree
 		woodcutters[0] = woodcutters[0] + 1; //add an idle woodcutter
-		document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
+		document.getElementById("idle_tree_woodcutters").innerHTML = woodcutters[0]; //display number of idle woodcutters
 		var tree_location = treenames[treeid]; // turn the location of the new tree in to text to re-display
-		tree_location = tree_location.concat("tree_woodcutters"); //the location string represents the variable name
-		document.getElementById(location).innerHTML = window[tree_location]; //display number of new woodcutters
+		tree_location = tree_location.concat("_tree_woodcutters"); //the location string represents the variable name
+		document.getElementById(tree_location).innerHTML = woodcutters[treeid]; //display number of new woodcutters
 	}
 	else {alert("You do not have any woodcutters at that tree");}
 }
-
+/*
 function cut_trees(){
 	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
 		if (woodcutters[i] > 0) { //only if the woodcutters are here
@@ -371,3 +367,4 @@ window.setInterval(function(){
 	cut_trees();
 	
 }, 60);
+*/

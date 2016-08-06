@@ -7,45 +7,52 @@
 <body>
 
 <span id="logs.total"></span> logs <br>
-<span id="oak_logs.total"></span> oak logs <br>
+<span id="oak.total"></span> oak logs <br>
+<span id="willow.total"></span> willow logs <br>
+<span id="teak.total"></span> teak logs <br>
+<span id="maple.total"></span> maple logs <br>
+<span id="mahogany.total"></span> mahogany logs <br>
+<span id="yew.total"></span> yew logs <br>
+<span id="magic.total"></span> magic logs <br>
+<span id="elder.total"></span> elder logs <br>
 hero location: <span id="hero_location"></span>  <br>
-<span id="idle_woodcutters"></span> idle woodcutters <br>
+<span id="idle_tree_woodcutters"></span> idle woodcutters <br>
 current hatchet: <span id="current_hatchet.name"></span><br>
 woodcutting level: <span id="hero_wc_lvl"></span><br> 
 woodcutting xp: <span id="hero_wc_xp"></span><br>
 
-<button onClick="equip_hatchet(no)"> <!--remove hatchet-->
+<button onClick="equip_hatchet('no')"> <!--remove hatchet-->
 Remove Hatchet <br>
 
-<button onClick="equip_hatchet(bronze)"> <!--bronze-->
+<button onClick="equip_hatchet('bronze')"> <!--bronze-->
 Bronze Hatchets: <span id="bronze_hatchet.total"></span><br>
 Durability: <span id="bronze_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(iron)"> <!--iron-->
+<button onClick="equip_hatchet('iron')"> <!--iron-->
 Iron Hatchets: <span id="iron_hatchet.total"></span><br>
 Durability: <span id="iron_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(steel)"> <!--steel-->
+<button onClick="equip_hatchet('steel')"> <!--steel-->
 Steel Hatchets: <span id="steel_hatchet.total"></span><br>
 Durability: <span id="steel_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(black)"> <!--black-->
+<button onClick="equip_hatchet('black')"> <!--black-->
 Black Hatchets: <span id="black_hatchet.total"></span><br>
 Durability: <span id="black_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(mithril)"> <!--mithril-->
+<button onClick="equip_hatchet('mithril')"> <!--mithril-->
 Mithril Hatchets: <span id="mithril_hatchet.total"></span><br>
 Durability: <span id="mithril_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(adamant)"> <!--adamant-->
+<button onClick="equip_hatchet('adamant')"> <!--adamant-->
 Adamant Hatchets: <span id="adamant_hatchet.total"></span><br>
 Durability: <span id="adamant_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(rune)"> <!--rune-->
+<button onClick="equip_hatchet('rune')"> <!--rune-->
 Rune Hatchets: <span id="rune_hatchet.total"></span><br>
 Durability: <span id="rune_hatchet.durability"></span><br>
 
-<button onClick="equip_hatchet(dragon)"> <!--dragon-->
+<button onClick="equip_hatchet('dragon')"> <!--dragon-->
 Dragon Hatchets: <span id="dragon_hatchet.total"></span><br>
 Durability: <span id="dragon_hatchet.durability"></span><br>
 </button>
@@ -53,7 +60,7 @@ Durability: <span id="dragon_hatchet.durability"></span><br>
 
 <button  onClick="herotreeClick(1)"> <!--tree-->
 TREE <br>
-woodcutters: <span id="tree_woodcutters"></span><br/>
+woodcutters: <span id="logs_tree_woodcutters"></span><br/>
 
 <button  onClick="herotreeClick(2)"> <!--oak_tree-->
 OAK TREE<br>
