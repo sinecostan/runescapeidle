@@ -4,8 +4,7 @@ var hero_wc_lvl = 1;
 var hero_fm_xp = 0;
 var hero_fm_lvl = 1;
 var firemakers = 0;
-var hatchet_durability = 100; //durability of currently equipped hatchet
-var xp_table = [0,83,174,276,388,512,650,801,1137,1507,	1915,	2367,	2865,	3413,	4021,	4691,	5429,	6245,	7595,	9086,	10730,	12548,	14549,	16760,	19202,	21896,	24866,	28148,	32976,	38304,	44184,	50676,	57840,	65748,	74476,	84112,	94744,	106484,	122684,	140564,	160299,	182089,	206139,	232689,	262004,	294359,	330079,	369514,	421756,	479428,	543100,	613390,	690994,	776662,	871246,	975670,	1090954,	1218226,	1382166,	1563158,	1762980,	1983592,	2227157,	2496069,	2792960,	3120742,	3482635,	3882188,	4386340,	4942948,	5557492,	6235988,	6985092,	7812156,	8725300,	9733476,	10846580,	12075532,	13602004,	15287344,	17148094,	19202515,	21470758,	23975089,	26740078,	29792860,	33163378,	36884716,	41449906,	46490276,	52055266,	58199486,	64983246,	72473096,	80742536,	89872726,	99953246,	111083016,	124600091];
+var xp_table = [0,83,174,276,388,512,650,801,1137,1507,	1915,	2367,	2865,	3413,	4021,	4691,	5429,	6245,	7595,	9086,	10730,	12548,	14549,	16760,	19202,	21896,	24866,	28148,	32976,	38304,	44184,	50676,	57840,	65748,	74476,	84112,	94744,	106484,	122684,	140564,	160299,	182089,	206139,	232689,	262004,	294359,	330079,	369514,	421756,	479428,	543100,	613390,	690994,	776662,	871246,	975670,	1090954,	1218226,	1382166,	1563158,	1762980,	1983592,	2227157,	2496069,	2792960,	3120742,	3482635,	3882188,	4386340,	4942948,	5557492,	6235988,	6985092,	7812156,	8725300,	9733476,	10846580,	12075532,	13602004,	15287344,	17148094,	19202515,	21470758,	23975089,	26740078,	29792860,	33163378,	36884716,	41449906,	46490276,	52055266,	58199486,	64983246,	72473096,	80742536,	89872726,	99953246,	111083016,	124600091]; //THIS MUST BE RECALCULATED FOR LEVEL UPS EVERY 11 LEVELS
 
 var log_types = {
 	logs:{
@@ -196,8 +195,8 @@ for (i = 0; i <= 9; i++){
 	document.getElementById(locations).innerHTML = woodcutters[i];
 }
 
-for (i = 1; i <= 8; i++){ //loop to give the player some hatchets for DEBUGGING PURPOSES
-	hatchet_types[metaltype[i]]["total"] = 100;
+for (i = 1; i <= 8; i++){ //loop to give the player some hatchets for DEBUGGING PURPOSES!!!!!!
+	hatchet_types[metaltype[i]]["total"] = 2;
 	var logtype = metaltype[i].concat("_hatchet.total");
 	document.getElementById(logtype).innerHTML = hatchet_types[metaltype[i]]["total"];
 	logtype = metaltype[i].concat("_hatchet.durability");
@@ -220,7 +219,6 @@ function equip_hatchet(hatchet_type){ //hatchet type is passed as the type of me
 	else {alert("You do not have any of these hatchets.");}
 }
 
-woodcutters[0] = 10;
 //for referencing objects, keep http://stackoverflow.com/questions/6393943/convert-javascript-string-in-dot-notation-into-an-object-reference/6394168#6394168 in my back pocket
 function treeClickup(treeid){ //treeid is the ID if the tree passed from the HTML file - depending on the tree the user clicks on
 	if (woodcutters[0] > 0 && hero_wc_lvl >= log_types[treenames[treeid]]["level"]){ //must have at least 1 idle woodcutter and the required woodcutting level
@@ -245,47 +243,51 @@ function treeClickdown(treeid){
 	}
 	else {alert("You do not have any woodcutters at that tree");}
 }
-/*
+
 function cut_trees(){
 	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
-		if (woodcutters[i] > 0) { //only if the woodcutters are here
+		if (woodcutters[i] > 0 && current_hatchet !== 'no') { //only if the woodcutters are here and the hatchet type is not "no hatchet"
 			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
-			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*window[current_hatchet.concat(".accuracy")];
-			hero_pow = Math.pow(logs.level, 3); //re-used for the log's value
-			var loglevel = treenames[i]; //get the tree name
-			loglevel = loglevel.concat("logs.level"); //get the log level
-			var defense = (0.0008*hero_pow+4*loglevel+40); //NOTE TO SELF: make sure this works - loglevel previously a string, make sure it's processed as a number		
+			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
+			hero_pow = Math.pow(log_types[treenames[i]]["level"], 3); //re-used for the log's value
+			var defense = (0.0008*hero_pow+4*log_types[treenames[i]]["level"]+40); 		
 			var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
-			for (j = 1; i <= woodcutters[i]; j++){ //try chopping a log once per woodcutter
+			for (j = 1; j <= woodcutters[i]; j++){ //try chopping a log once per woodcutter
 				if (Math.random() < cutchance) {
-					if(window[current_hatchet.concat(".total")] > 0){ //makes sure we have a hatchet equipped before cutting
-						var helperflag = false;
-						if  (hero_wc_lvl % 11 !== 0) {
-							helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc followerr
+					var helperflag = false;
+					if  (hero_wc_lvl % 11 !== 0) {
+						helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc followerr
+					}
+					log_types[treenames[i]]["total"] = log_types[treenames[i]]["total"] + 1; //gain a log
+					var logtype = treenames[i].concat(".total");
+					document.getElementById(logtype).innerHTML = log_types[treenames[i]]["total"]; //display # of logs 
+					
+					hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
+					var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+					if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
+						hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
+						hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
+						hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+						hatchet_type = current_hatchet.concat("_hatchet.total"); 
+						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
+						if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
+							current_hatchet = 'no';
+							document.getElementById("current_hatchet.name").innerHTML = "no hatchet";
 						}
-						var logtype = treenames[i];
-						logtype = logtype.concat("logs.total"); //this generates the name of the log type, e.g. oak_logs.total
-						logtype = window[logtype] + 1; //gain a log
-						document.getElementById(logtype).innerHTML = logtype; //display # of logs
-						
-						window[current_hatchet.concat(".durability")] = window[current_hatchet.concat(".durability")] -1; //remove 1 durability after cutting a log
-						if (window[current_hatchet.concat(".durability")] === 0) { //check to see if durability is down to 0 after cutting that log
-							window[current_hatchet.concat(".total")] = window[current_hatchet.concat(".total")]-1;  //subtract a hatchet for breaking
-							window[current_hatchet.concat(".durability")] = window[current_hatchet.concat(".durability")] + window[current_hatchet.concat(".accuracy")]; //set the durability for the next hatchet to its maximum value
-						}
-						
-						logtype = treenames[i].concat("logs.wc_experience"); //sets it to the type of logs' experience value
-						hero_wc_xp = hero_wc_xp + window[logtype]; //gain xp for cutting the log
-						document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
-						
-						if (hero_wc_xp > xp_table[hero_wc_lvl]) {
-							hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
-							document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
-							if (helperflag === true && hero_wc_lvl % 11 === 0) {
-								woodcutters[0] = woodcutters[0] + 1; //if dinged level XX, add a woodcutter
-								document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
-							}	
-						}
+					}
+
+					hero_wc_xp = hero_wc_xp + log_types[treenames[i]]["wc_experience"]; //gain xp for cutting the log
+					document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
+					
+					if (hero_wc_xp > xp_table[hero_wc_lvl]) {
+						hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
+						document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
+						if (helperflag === true && hero_wc_lvl % 11 === 0) {
+							woodcutters[0] = woodcutters[0] + 1; //if dinged level XX, add a woodcutter
+							document.getElementById("idle_tree_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
+						}	
 					}
 				}
 			}
@@ -295,53 +297,58 @@ function cut_trees(){
 
 
 function herotreeClick(treeid){
-	var treelevel = treenames[treeid]; //used to fetch the level of this particular log type
-	treelevel = treelevel.concat("logs.level"); 
-	if (hero_wc_lvl >= window[treelevel]){ //=== not used because we are checking a number vs a string that will be equal
-		hero_location[0] = treenames[treeid].concat("tree"); //make sure this doesn't need to be two lines. hero_location is already declared.
+	if (hero_wc_lvl >= log_types[treenames[treeid]]["level"]){ 
+		hero_location[0] = treenames[treeid].concat(" tree"); //make sure this doesn't need to be two lines. hero_location is already declared.	
+		document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location	
+		hero_location[0] = treenames[treeid]; //we now no longer need to write out the tree type in full
 		hero_location[1] = treeid; //set the treeid of the hero location
-		document.getElementById("hero_location").innerHTML = hero_location[0]; //display hero's location
+
 	}
 	else{alert("You do not have the required level to chop down these trees.")}
 }
 
 function herotree(){
 	if (hero_location[1] !== 0) { //only if the hero is not idle
-		var hero_pow = Math.pow(hero_wc_lvl, 3);
-		var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*window[current_hatchet.concat(".accuracy")];
-		hero_pow = Math.pow(logs.level, 3); //re-used for the log's value
-		var loglevel = treenames[hero_location[1]]; //get the tree name from the hero's location
-		loglevel = loglevel.concat("logs.level"); //get the log level
-		var defense = (0.0008*hero_pow+4*loglevel+40); //NOTE TO SELF: make sure this works - loglevel previously a string, make sure it's processed as a number		
-		var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
-		if (Math.random() < cutchance) {
-			if(window[current_hatchet.concat(".total")] > 0){ //makes sure we have a hatchet equipped before cutting
+		if (current_hatchet !== 'no') { //only if the hatchet type is not "no hatchet"
+			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
+			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
+			hero_pow = Math.pow(log_types[hero_location[0]]["level"], 3); //re-used for the log's value
+			var defense = (0.0008*hero_pow+4*log_types[hero_location[0]]["level"]+40); 		
+			var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
+			if (Math.random() < cutchance) {
 				var helperflag = false;
 				if  (hero_wc_lvl % 11 !== 0) {
 					helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a wc followerr
 				}
-				var logtype = treenames[hero_location[1]];
-				logtype = logtype.concat("logs.total"); //this generates the name of the log type, e.g. oak_logs.total
-				logtype = window[logtype] + 1; //gain a log
-				document.getElementById(logtype).innerHTML = logtype; //display # of logs
+				log_types[hero_location[0]]["total"] = log_types[hero_location[0]]["total"] + 1; //gain a log
+				var logtype = hero_location[0].concat(".total");
+				document.getElementById(logtype).innerHTML = log_types[hero_location[0]]["total"]; //display # of logs
 				
-				logtype = treenames[hero_location[1]].concat("logs.wc_experience"); //sets it to the type of logs' experience value
-				hero_wc_xp = hero_wc_xp + window[logtype]; //gain xp for cutting the log
-				document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
-				
-				window[current_hatchet.concat(".durability")] = window[current_hatchet.concat(".durability")] -1; //remove 1 durability after cutting a log
-				if (window[current_hatchet.concat(".durability")] === 0) { //check to see if durability is down to 0 after cutting that log
-					window[current_hatchet.concat(".total")] = window[current_hatchet.concat(".total")]-1;  //subtract a hatchet for breaking
-					window[current_hatchet.concat(".durability")] = window[current_hatchet.concat(".durability")] + window[current_hatchet.concat(".accuracy")]; //set the durability for the next hatchet to its maximum value
+				hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
+				var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+				document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+				if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
+					hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
+					hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
+					hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+					hatchet_type = current_hatchet.concat("_hatchet.total"); 
+					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
+					if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
+						current_hatchet = 'no';
+					}
 				}
+				
+				hero_wc_xp = hero_wc_xp + log_types[hero_location[0]]["wc_experience"]; //gain xp for cutting the log
+				document.getElementById("hero_wc_xp").innerHTML = hero_wc_xp; //display xp
 				
 				if (hero_wc_xp > xp_table[hero_wc_lvl]) {
 					hero_wc_lvl = hero_wc_lvl + 1; //if xp overflows in to the next level, add a new level
 					document.getElementById("hero_wc_lvl").innerHTML = hero_wc_lvl; //display new level
 					if (helperflag === true && hero_wc_lvl % 11 === 0) {
 						woodcutters[0] = woodcutters[0] + 1; //if dinged level XX, add a woodcutter
-						document.getElementById("idle_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
-					}
+						document.getElementById("idle_tree_woodcutters").innerHTML = woodcutters[0]; //add an idle woodcutter
+					}	
 				}
 			}
 		}
@@ -366,5 +373,5 @@ window.setInterval(function(){
 	herotree();
 	cut_trees();
 	
-}, 60);
-*/
+}, 30);
+
