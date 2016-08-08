@@ -1,1 +1,113 @@
-testing, 1, 2, 3...
+/*https://b.thumbs.redditmedia.com/6X3vtoblUNtaKoeoycKrs5dR2ijcvDel25lpCjGK9sQ.css upvoting css from reddit */
+
+.hatchet {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 75px;
+	width: 75px;
+	border: 3px solid black;
+	padding: 1px;
+	background: no-repeat center;
+    background-size: 100%;
+	background-color: #443C31;
+}
+
+.tree {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 150px;
+	width: 150px;
+	border: 3px solid black;
+	padding: 1px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-color: #443C31; /*c8c0a8 is a light tan */
+}
+
+.uparrow{
+	background-image:url(images/arrows/uparrow.png);
+	height: 37px;
+	width: 37px;
+	border: 3px solid black;
+	padding: 0px;
+	background-color: #443C31;
+	margin-top: 37px;
+	margin-bottom: 15px;
+}
+
+.downarrow{
+	background-image:url(images/arrows/downarrow.png);
+	height: 37px;
+	width: 37px;
+	border: 3px solid black;
+	padding: 0px;
+	background-color: #443C31;
+	margin-top: 15px;
+	margin-bottom: 37px;
+}
+
+@font-face {
+	font-family:"RuneScape";
+	src:url("fonts/bold/runescape_bold_font.eot?") format("eot"),
+	url("fonts/bold/runescape_bold_font.woff") format("woff"),
+	url("fonts/bold/runescape_bold_font.ttf") format("truetype"),
+	url("fonts/bold/runescape_bold_font.svg#RuneScape-Bold-Font") format("svg");
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+	font-family:"RuneScape-thin";
+	src:url("fonts/chat/runescape_chat_font.eot?") format("eot"),
+	url("fonts/chat/runescape_chat_font.woff") format("woff"),
+	url("fonts/chat/runescape_chat_font.ttf") format("truetype"),
+	url("fonts/chat/runescape_chat_font.svg#Runescape-Chat-Font") format("svg");
+	font-weight:normal;
+	font-style:normal;
+}
+
+.tlnumber { /*top-left numbers*/
+	margin: 0;
+	text-align: left;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	transform: translate(0%,-160%);
+}
+
+.trnumber { /*top-right numbers*/
+	margin: 0;
+	text-align: right;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	transform: translate(0%,-260%);
+}
+
+.trnumbertree{ /*top-right numbers for the trees*/
+	margin: 0;
+	text-align: right;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	transform: translate(0%,-550%);
+}
+
+.bottomtreetext {
+	margin: 0;
+	text-align: center;
+	position: relative;
+	top: 0%;
+	left: 0%;
+	transform: translate(0%,550%);
+}
+
+.rs {
+	font-family: RuneScape;
+	color: #FFFF00;	
+}
+
+.rst {
+	font-family: RuneScape-thin;
+	color: #FFFF00;
+}
