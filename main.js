@@ -279,7 +279,7 @@ function cut_trees(){
 									current_hatchet = metaltype[k]; //equip new hatchet
 									document.getElementById("current_hatchet.name").innerHTML = hatchet_types[metaltype[k]]["name"];
 									}
-								{
+								}
 							}
 						}
 					}
