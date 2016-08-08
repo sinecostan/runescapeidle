@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 </head>
 
-<body>
+<body class='rst' style='font-size:125%' bgcolor="#443C31">
 
 <span id="logs.total"></span> logs <br>
 <span id="oak.total"></span> oak logs <br>
@@ -21,138 +21,115 @@ current hatchet: <span id="current_hatchet.name"></span><br>
 woodcutting level: <span id="hero_wc_lvl"></span><br> 
 woodcutting xp: <span id="hero_wc_xp"></span><br>
 
-<button onClick="equip_hatchet('no')"> <!--remove hatchet-->
-Remove Hatchet <br>
-
-<button onClick="equip_hatchet('bronze')"> <!--bronze-->
-Bronze Hatchets: <span id="bronze_hatchet.total"></span><br>
-Durability: <span id="bronze_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('iron')"> <!--iron-->
-Iron Hatchets: <span id="iron_hatchet.total"></span><br>
-Durability: <span id="iron_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('steel')"> <!--steel-->
-Steel Hatchets: <span id="steel_hatchet.total"></span><br>
-Durability: <span id="steel_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('black')"> <!--black-->
-Black Hatchets: <span id="black_hatchet.total"></span><br>
-Durability: <span id="black_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('mithril')"> <!--mithril-->
-Mithril Hatchets: <span id="mithril_hatchet.total"></span><br>
-Durability: <span id="mithril_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('adamant')"> <!--adamant-->
-Adamant Hatchets: <span id="adamant_hatchet.total"></span><br>
-Durability: <span id="adamant_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('rune')"> <!--rune-->
-Rune Hatchets: <span id="rune_hatchet.total"></span><br>
-Durability: <span id="rune_hatchet.durability"></span><br>
-
-<button onClick="equip_hatchet('dragon')"> <!--dragon-->
-Dragon Hatchets: <span id="dragon_hatchet.total"></span><br>
-Durability: <span id="dragon_hatchet.durability"></span><br>
+<button class='hatchet' onClick="equip_hatchet('no')"> <!--remove hatchet-->
+<p class='rst'>Remove Hatchet </p>
 </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Bronze_hatchet.png);" onClick="equip_hatchet('bronze')"> <!--bronze-->
+<div class='tlnumber rst'><span id="bronze_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="bronze_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Iron_hatchet.png);" onClick="equip_hatchet('iron')"> <!--iron-->
+<div class='tlnumber rst'><span id="iron_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="iron_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Steel_hatchet.png);" onClick="equip_hatchet('steel')"> <!--steel-->
+<div class='tlnumber rst'><span id="steel_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="steel_hatchet.durability"></span></div></button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Black_hatchet.png);" onClick="equip_hatchet('black')"> <!--black-->
+<div class='tlnumber rst'><span id="black_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="black_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Mithril_hatchet.png);" onClick="equip_hatchet('mithril')"> <!--mithril-->
+<div class='tlnumber rst'><span id="mithril_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="mithril_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Adamant_hatchet.png);" onClick="equip_hatchet('adamant')"> <!--adamant-->
+<div class='tlnumber rst'><span id="adamant_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="adamant_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Rune_hatchet.png);" onClick="equip_hatchet('rune')"> <!--rune-->
+<div class='tlnumber rst'><span id="rune_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="rune_hatchet.durability"></span></div> </button>
+
+<button class='hatchet' style="background-image:url(images/hatchets/Dragon_hatchet.png);" onClick="equip_hatchet('dragon')"> <!--dragon-->
+<div class='tlnumber rst'><span id="dragon_hatchet.total"></span></div>
+<div class='trnumber rst'><span id="dragon_hatchet.durability"></span></div> </button>
 <br>
 
-<button  onClick="herotreeClick(1)"> <!--tree-->
-(LOGS) TREE <br>
-woodcutters: <span id="logs_tree_woodcutters"></span><br/>
+<button class='tree' style="background-image:url(images/trees/Logs_tree.png);" onClick="herotreeClick(1)"> <!--tree-->
+<div class='bottomtreetext rst'>(LOGS) TREE </div> 
+<div class='trnumbertree rst'><span id="logs_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(1)">  <!--tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(1)">  <!--tree--> </button>
+</span>
+	
+<button class='tree' style="background-image:url(images/trees/Oak_tree.png);" onClick="herotreeClick(2)"> <!--oak_tree-->
+<div class='bottomtreetext rst'>OAK TREE</div>
+<div class='trnumbertree rst'><span id="oak_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(2)">  <!--oak_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(2)">  <!--oak_tree--> </button>
+</span>
+	
+<button class='tree' style="background-image:url(images/trees/Willow_tree.png);" onClick="herotreeClick(3)"> <!--willow_tree-->
+<div class='bottomtreetext rst'>WILLOW TREE</div>
+<div class='trnumbertree rst'><span id="willow_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(3)">  <!--willow_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(3)">  <!--willow_tree--> </button>
+</span>
+	
+<button class='tree' style="background-image:url(images/trees/Teak_tree.png);" onClick="herotreeClick(4)"> <!--teak_tree-->
+<div class='bottomtreetext rst'>TEAK TREE</div>
+<div class='trnumbertree rst'><span id="teak_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(4)">  <!--teak_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(4)">  <!--teak_tree--> </button>
+</span>
 
-<button  onClick="herotreeClick(2)"> <!--oak_tree-->
-OAK TREE<br>
-woodcutters: <span id="oak_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(3)"> <!--willow_tree-->
-WILLOW TREE<br>
-woodcutters: <span id="willow_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(4)"> <!--teak_tree-->
-TEAK TREE<br>
-woodcutters: <span id="teak_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(5)"> <!--maple_tree-->
-MAPLE TREE<br>
-woodcutters: <span id="maple_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(6)"> <!--mahogany_tree-->
-MAHOGANY TREE<br>
-woodcutters: <span id="mahogany_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(7)"> <!--yew_tree-->
-YEW TREE<br>
-woodcutters: <span id="yew_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(8)"> <!--magic_tree-->
-MAGIC TREE<br>
-woodcutters: <span id="magic_tree_woodcutters"></span><br/>
-
-<button  onClick="herotreeClick(9)"> <!--elder_tree-->
-ELDER TREE<br>
-woodcutters: <span id="elder_tree_woodcutters"></span><br/>
-</button>
+<button class='tree' style="background-image:url(images/trees/Maple_tree.png);" onClick="herotreeClick(5)"> <!--maple_tree-->
+<div class='bottomtreetext rst'>MAPLE TREE</div>
+<div class='trnumbertree rst'><span id="maple_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(5)">  <!--maple_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(5)">  <!--maple_tree--> </button>
+</span>	
+	
 <br>
+<button class='tree' style="background-image:url(images/trees/Mahogany_tree.png);" onClick="herotreeClick(6)"> <!--mahogany_tree-->
+<div class='bottomtreetext rst'>MAHOGANY TREE</div>
+<div class='trnumbertree rst'><span id="mahogany_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(6)">  <!--mahogany_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(6)">  <!--mahogany_tree--> </button>
+</span>
 
-<button  onClick="treeClickup(1)">  <!--tree-->
-add woodcutter   <br>
+<button class='tree' style="background-image:url(images/trees/Yew_tree.png);" onClick="herotreeClick(7)"> <!--yew_tree-->
+<div class='bottomtreetext rst'>YEW TREE</div>
+<div class='trnumbertree rst'><span id="yew_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(7)">  <!--yew_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(7)">  <!--yew_tree--> </button>
+</span>
 
-<button  onClick="treeClickup(2)">  <!--oak_tree-->
-add woodcutter   <br>
+<button class='tree' style="background-image:url(images/trees/Magic_tree.png);" onClick="herotreeClick(8)"> <!--magic_tree-->
+<div class='bottomtreetext rst'>MAGIC TREE</div>
+<div class='trnumbertree rst'><span id="magic_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(8)">  <!--magic_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(8)">  <!--magic_tree--> </button>
+</span>
 
-<button  onClick="treeClickup(3)">  <!--willow_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(4)">  <!--teak_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(5)">  <!--maple_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(6)">  <!--mahogany_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(7)">  <!--yew_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(8)">  <!--magic_tree-->
-add woodcutter   <br>
-
-<button  onClick="treeClickup(9)">  <!--elder_tree-->
-add woodcutter   <br>
-</button>
-<br>
-
-<button  onClick="treeClickdown(1)">  <!--tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(2)">  <!--oak_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(3)">  <!--willow_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(4)">  <!--teak_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(5)">  <!--maple_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(6)">  <!--mahogany_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(7)">  <!--yew_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(8)">  <!--magic_tree-->
-remove woodcutter<br>
-
-<button  onClick="treeClickdown(9)">  <!--elder_tree-->
-remove woodcutter<br>
-
-</button>
+<button class='tree' style="background-image:url(images/trees/Elder_tree.png);" onClick="herotreeClick(9)"> <!--elder_tree-->
+<div class='bottomtreetext rst'>ELDER TREE</div>
+<div class='trnumbertree rst'><span id="elder_tree_woodcutters"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="treeClickup(9)">  <!--elder_tree--> </button>
+	<button class='downarrow' onClick="treeClickdown(9)">  <!--elder_tree--> </button>
+</span>
 
 <script type="text/javascript" src="main.js"></script>
 </body>
