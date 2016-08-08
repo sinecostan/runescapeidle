@@ -246,7 +246,7 @@ function treeClickdown(treeid){
 
 function cut_trees(){
 	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
-		if (woodcutters[i] > 0 && current_hatchet !== 'no') { //only if the woodcutters are here and the hatchet type is not "no hatchet"
+		if (woodcutters[i] > 0) { //only if the woodcutters are here
 			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[treenames[i]]["level"], 3); //re-used for the log's value
@@ -315,7 +315,7 @@ function herotreeClick(treeid){
 
 function herotree(){
 	if (hero_location[1] !== 0) { //only if the hero is not idle
-		if (current_hatchet !== 'no') { //only if the hatchet type is not "no hatchet"
+
 			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[hero_location[0]]["level"], 3); //re-used for the log's value
@@ -363,7 +363,7 @@ function herotree(){
 					}	
 				}
 			}
-		}
+		
 	}
 }
 
