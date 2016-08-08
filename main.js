@@ -274,7 +274,7 @@ function cut_trees(){
 							hatchet_type = current_hatchet.concat("_hatchet.total"); 
 							document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
 							if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
-								for (k = 0; k >= 8; k--) { //loop that equips the highest possible level hatchet if the last current one breaks
+								for (k = 0; k >= 8; k++) { //loop that equips the highest possible level hatchet if the last current one breaks
 									if (hatchet_types[metaltype[k]]["total"] > 0 && hero_wc_lvl > hatchet_types[metaltype[k]]["level"]) { //makes sure there is a spare hatchet that the hero is high enough to use
 									current_hatchet = metaltype[k]; //equip new hatchet
 									document.getElementById("current_hatchet.name").innerHTML = hatchet_types[metaltype[k]]["name"];
@@ -341,7 +341,7 @@ function herotree(){
 						hatchet_type = current_hatchet.concat("_hatchet.total"); 
 						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
 						if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
-							for (k = 0; k >= 8; k--) { //loop that equips the highest possible level hatchet if the last current one breaks
+							for (k = 0; k >= 8; k++) { //loop that equips the highest possible level hatchet if the last current one breaks
 								if (hatchet_types[metaltype[k]]["total"] > 0 && hero_wc_lvl > hatchet_types[metaltype[k]]["level"]) { //makes sure there is a spare hatchet that the hero is high enough to use
 									current_hatchet = metaltype[k]; //equip new hatchet
 									document.getElementById("current_hatchet.name").innerHTML = hatchet_types[metaltype[k]]["name"];
