@@ -4,7 +4,7 @@ var hero_wc_lvl = 1;
 var hero_fm_xp = 0;
 var hero_fm_lvl = 1;
 var firemakers = 0;
-var xp_table = [83,174,276,388,512,650,801,969,1154,1562,2014,2512,3060,3668,4338,5076,5892,6792,7786,	8882,	10700,	12701,	14912,	17354,	20048,	23018,	26300,	29921,	33917,	38327,	43196,	50360,	58268,	66996,	76632,	87264,	99004,	111964,	126268,	142056,	159488,	178728,	205278,	234593,	266948,	302668,	342103,	385638,	433698,	486758,	545333,	610003,	681393,	775977,	880401,	995685,	1122957,	1263477,	1418613,	1589889,	1778985,	1987755,	2218251,	2472729,	2800511,	3162404,	3561957,	4003090,	4490122,	5027848,	5621532,	6276998,	7000679,	7799680,	8681834,	9794938,	11023890,	12380754,	13878834,	15532834,	17358986,	19375202,	21601274,	24059042,	26772626,	29768642,	33489980,	37598651,	42134984,	47143475,	52673273,	58778657,	65519522,	72962018,	81179189,	90251657,	100268450,	112556700,	126123990,	141103480,	157642150,	175902310,	196063120,	218322450,	242898710,270033080,299991820,333068930,373241007,417594547,466564787,520632295,580327634,646236609,719005976,799349844,888056638,985996843,1094131573];
+var xp_table = [0,83,174,276,388,512,650,801,969,1154,1562,2014,2512,3060,3668,4338,5076,5892,6792,7786,	8882,	10700,	12701,	14912,	17354,	20048,	23018,	26300,	29921,	33917,	38327,	43196,	50360,	58268,	66996,	76632,	87264,	99004,	111964,	126268,	142056,	159488,	178728,	205278,	234593,	266948,	302668,	342103,	385638,	433698,	486758,	545333,	610003,	681393,	775977,	880401,	995685,	1122957,	1263477,	1418613,	1589889,	1778985,	1987755,	2218251,	2472729,	2800511,	3162404,	3561957,	4003090,	4490122,	5027848,	5621532,	6276998,	7000679,	7799680,	8681834,	9794938,	11023890,	12380754,	13878834,	15532834,	17358986,	19375202,	21601274,	24059042,	26772626,	29768642,	33489980,	37598651,	42134984,	47143475,	52673273,	58778657,	65519522,	72962018,	81179189,	90251657,	100268450,	112556700,	126123990,	141103480,	157642150,	175902310,	196063120,	218322450,	242898710,270033080,299991820,333068930,373241007,417594547,466564787,520632295,580327634,646236609,719005976,799349844,888056638,985996843,1094131573];
 
 var log_types = {
 	logs:{
@@ -196,7 +196,7 @@ for (i = 0; i <= 9; i++){
 }
 
 for (i = 1; i <= 8; i++){ //loop to give the player some hatchets for DEBUGGING PURPOSES!!!!!!
-	hatchet_types[metaltype[i]]["total"] = 2;
+	hatchet_types[metaltype[i]]["total"] = 5;
 	var logtype = metaltype[i].concat("_hatchet.total");
 	document.getElementById(logtype).innerHTML = hatchet_types[metaltype[i]]["total"];
 	logtype = metaltype[i].concat("_hatchet.durability");
@@ -251,7 +251,7 @@ function cut_trees(){
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[treenames[i]]["level"], 3); //re-used for the log's value
 			var defense = (0.0008*hero_pow+4*log_types[treenames[i]]["level"]+40); 		
-			var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
+			var cutchance = 0.04*accuracy/defense; //figure out the chance of cutting a log per tick
 			for (j = 1; j <= woodcutters[i]; j++){ //try chopping a log once per woodcutter
 				if (Math.random() < cutchance) {
 					var helperflag = false;
@@ -320,7 +320,7 @@ function herotree(){
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[hero_location[0]]["level"], 3); //re-used for the log's value
 			var defense = (0.0008*hero_pow+4*log_types[hero_location[0]]["level"]+40); 		
-			var cutchance = 0.05*accuracy/defense; //figure out the chance of cutting a log per tick
+			var cutchance = 0.04*accuracy/defense; //figure out the chance of cutting a log per tick
 			if (Math.random() < cutchance) {
 				var helperflag = false;
 				if  (hero_wc_lvl % 11 !== 0) {
@@ -385,5 +385,5 @@ window.setInterval(function(){
 	herotree();
 	cut_trees();
 	
-}, 30);
+}, 600);
 
