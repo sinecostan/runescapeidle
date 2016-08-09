@@ -4,7 +4,7 @@ var hero_wc_lvl = 1;
 var hero_fm_xp = 0;
 var hero_fm_lvl = 1;
 var firemakers = 0;
-var xp_table = [0,83,174,276,388,512,650,801,1137,1507,	1915,	2367,	2865,	3413,	4021,	4691,	5429,	6245,	7595,	9086,	10730,	12548,	14549,	16760,	19202,	21896,	24866,	28148,	32976,	38304,	44184,	50676,	57840,	65748,	74476,	84112,	94744,	106484,	122684,	140564,	160299,	182089,	206139,	232689,	262004,	294359,	330079,	369514,	421756,	479428,	543100,	613390,	690994,	776662,	871246,	975670,	1090954,	1218226,	1382166,	1563158,	1762980,	1983592,	2227157,	2496069,	2792960,	3120742,	3482635,	3882188,	4386340,	4942948,	5557492,	6235988,	6985092,	7812156,	8725300,	9733476,	10846580,	12075532,	13602004,	15287344,	17148094,	19202515,	21470758,	23975089,	26740078,	29792860,	33163378,	36884716,	41449906,	46490276,	52055266,	58199486,	64983246,	72473096,	80742536,	89872726,	99953246,	111083016,	124600091]; //THIS MUST BE RECALCULATED FOR LEVEL UPS EVERY 11 LEVELS
+var xp_table = [83,174,276,388,512,650,801,969,1154,1562,2014,2512,3060,3668,4338,5076,5892,6792,7786,	8882,	10700,	12701,	14912,	17354,	20048,	23018,	26300,	29921,	33917,	38327,	43196,	50360,	58268,	66996,	76632,	87264,	99004,	111964,	126268,	142056,	159488,	178728,	205278,	234593,	266948,	302668,	342103,	385638,	433698,	486758,	545333,	610003,	681393,	775977,	880401,	995685,	1122957,	1263477,	1418613,	1589889,	1778985,	1987755,	2218251,	2472729,	2800511,	3162404,	3561957,	4003090,	4490122,	5027848,	5621532,	6276998,	7000679,	7799680,	8681834,	9794938,	11023890,	12380754,	13878834,	15532834,	17358986,	19375202,	21601274,	24059042,	26772626,	29768642,	33489980,	37598651,	42134984,	47143475,	52673273,	58778657,	65519522,	72962018,	81179189,	90251657,	100268450,	112556700,	126123990,	141103480,	157642150,	175902310,	196063120,	218322450,	242898710,270033080,299991820,333068930,373241007,417594547,466564787,520632295,580327634,646236609,719005976,799349844,888056638,985996843,1094131573];
 
 var log_types = {
 	logs:{
@@ -86,10 +86,10 @@ var log_types = {
 var hatchet_types = {
 	no:{
 	name:'no hatchet',
-	total:0, //this means the hatchet will always exit loops that require a hatchet equipped
+	total:1, //this means the hatchet will always exit loops that require a hatchet equipped
 	level:1,
 	price:1,
-	accuracy:1,
+	accuracy:0,
 	damage:1,
 	speed:5,
 	durability:1
@@ -246,7 +246,7 @@ function treeClickdown(treeid){
 
 function cut_trees(){
 	for (i = 1; i <= 9; i++){ //run through every tree type - no idle trees
-		if (woodcutters[i] > 0 && current_hatchet !== 'no') { //only if the woodcutters are here and the hatchet type is not "no hatchet"
+		if (woodcutters[i] > 0) { //only if the woodcutters are here
 			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[treenames[i]]["level"], 3); //re-used for the log's value
@@ -262,19 +262,25 @@ function cut_trees(){
 					var logtype = treenames[i].concat(".total");
 					document.getElementById(logtype).innerHTML = log_types[treenames[i]]["total"]; //display # of logs 
 					
-					hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
-					var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
-					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
-					if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
-						hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
-						hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
-						hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+					if (current_hatchet !== "no") { //skip all of the durability code if there is no hatchet equipped
+						hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
+						var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
 						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
-						hatchet_type = current_hatchet.concat("_hatchet.total"); 
-						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
-						if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
-							current_hatchet = 'no';
-							document.getElementById("current_hatchet.name").innerHTML = "no hatchet";
+						if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
+							hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
+							hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
+							hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+							document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+							hatchet_type = current_hatchet.concat("_hatchet.total"); 
+							document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
+							if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
+								for (k = 0; k <= 8; k++) { //loop that equips the highest possible level hatchet if the last current one breaks
+									if (hatchet_types[metaltype[k]]["total"] > 0 && hero_wc_lvl >= hatchet_types[metaltype[k]]["level"]) { //makes sure there is a spare hatchet that the hero is high enough to use
+										current_hatchet = metaltype[k]; //equip new hatchet
+									}
+								}
+								document.getElementById("current_hatchet.name").innerHTML = hatchet_types[current_hatchet]["name"];
+							}
 						}
 					}
 
@@ -309,7 +315,7 @@ function herotreeClick(treeid){
 
 function herotree(){
 	if (hero_location[1] !== 0) { //only if the hero is not idle
-		if (current_hatchet !== 'no') { //only if the hatchet type is not "no hatchet"
+
 			var hero_pow = Math.pow(hero_wc_lvl, 3); //only need to do the hero power calculations once for each tree
 			var accuracy = (0.0008*hero_pow+4*hero_wc_lvl+40)+2.5*hatchet_types[current_hatchet]["accuracy"];
 			hero_pow = Math.pow(log_types[hero_location[0]]["level"], 3); //re-used for the log's value
@@ -323,19 +329,25 @@ function herotree(){
 				log_types[hero_location[0]]["total"] = log_types[hero_location[0]]["total"] + 1; //gain a log
 				var logtype = hero_location[0].concat(".total");
 				document.getElementById(logtype).innerHTML = log_types[hero_location[0]]["total"]; //display # of logs
-				
-				hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
-				var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
-				document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
-				if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
-					hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
-					hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
-					hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+				if (current_hatchet !== "no") { //skip all of the durability code if there is no hatchet equipped
+					hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] -1; //remove 1 durability after cutting a log
+					var hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
 					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
-					hatchet_type = current_hatchet.concat("_hatchet.total"); 
-					document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
-					if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
-						current_hatchet = 'no';
+					if (hatchet_types[current_hatchet]["durability"] === 0) { //check to see if durability is down to 0 after cutting that log
+						hatchet_types[current_hatchet]["total"] = hatchet_types[current_hatchet]["total"]-1;  //subtract a hatchet for breaking
+						hatchet_types[current_hatchet]["durability"] = hatchet_types[current_hatchet]["durability"] + hatchet_types[current_hatchet]["accuracy"]; //set the durability for the next hatchet to its maximum value
+						hatchet_type = current_hatchet.concat("_hatchet.durability"); //we use this variable to refer to the HTML ID for the hatchets
+						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["durability"]; //display hatchet durability
+						hatchet_type = current_hatchet.concat("_hatchet.total"); 
+						document.getElementById(hatchet_type).innerHTML = hatchet_types[current_hatchet]["total"] //display number of current hatchets
+						if (hatchet_types[current_hatchet]["total"] === 0){ //unequip the hatchet if there are none left
+							for (k = 0; k <= 8; k++) { //loop that equips the highest possible level hatchet if the last current one breaks
+								if (hatchet_types[metaltype[k]]["total"] > 0 && hero_wc_lvl >= hatchet_types[metaltype[k]]["level"]) { //makes sure there is a spare hatchet that the hero is high enough to use
+									current_hatchet = metaltype[k]; //equip new hatchet
+								}
+							}
+							document.getElementById("current_hatchet.name").innerHTML = hatchet_types[current_hatchet]["name"];
+						}
 					}
 				}
 				
@@ -351,7 +363,7 @@ function herotree(){
 					}	
 				}
 			}
-		}
+		
 	}
 }
 
