@@ -1,0 +1,268 @@
+NOTE: any quest-related or locked off areas are not included.
+These will be added to the skill with the quest.
+
+NOTE: check equipment degradation for barrows etc.
+while bronze hatchets being low is fine, the durability should probably scale up so dragon hatchets last longer.
+e.g. ascension grips last 100000 ticks or something, so other items should last longer too.
+
+GATHERING SKILLS:
+Woodcutting
+	Ivy cutting
+
+Mining
+	Programming: all mining tasks
+	Programming: Add gems, random chance of gems
+	Add clay for use with crafting
+
+Fishing
+	Net fishing
+	Crayfish cage
+	Fishing rod + bait
+	Fly Fishing rod + feathers
+	Harpoons
+	Lobster Pots
+
+Hunter
+	Tracking
+	Bird Snaring
+	Butterfly Netting
+	Deadfall Trapping
+	Box trapping
+	Net Trapping
+	Pitfall Trapping
+	
+Divination (also crafting)
+	All types of wisps
+	two gathering methods: prioritize XP and prioritize divine energy
+	Creation of boons
+
+Thieving (listed as support, but gathering while training – can also be used for quest requirements etc.)
+	Pickpocketing
+		randomly consume food once cooking is implemented, otherwise there will be deaths & a long walk back to location (reduced with agility)
+			note multiple people may pickpocket the same NPC, so only need 1 location for each (closest to bank)
+			also note that drops from thieving will work the same as from combat - use a common function!
+	Stalls
+	Chests
+ 
+CRAFTING SKILLS:
+Firemaking (Crafting ashes huehuehue)
+	burn logs. agility-independent
+		maximize ashes + xp/hr
+		maximize xp/log (bonfire)
+		
+Smithing
+	Start with ores -> bars
+		Agility-independent until I add locations (3 furnaces)
+	Items
+		Smithing items will need its own tabbed menu based on the bar chosen.
+		It may be best to actually have the bars be buttons,
+		and use the buttons to assign smithers.
+		BRONZE (note: no off-hand 1h weapons. we can code our adventurers to use multiple)
+				I guess adding more weapons wouldn't be the worst, but slow vs fast weapons
+				don't matter when using abilities.
+				note2: levels changed. smithing needs a huge rework though
+			1 hatchet, pickaxe (should be craftable BEFORE perils of ice mountain)
+			3 mace for 1h crush, scimitar for 1h slash, Daggers for 1h stab
+			5 crossbow limbs, crossbow bolts
+			7 throwing knives, axes, arrowheads (dart tips later - more ore-efficient than knives)
+			9 Chainbody, square shield, helm
+			11 bronze spear (2h stab, new item), 2h sword (2h slash), warhammer (2h crush!!! since there are no mauls)
+			13 platelegs, platebody, full helm, Kiteshield
+		Other metals should follow a similar pattern. Quest junk can be placed inbetween.
+	
+Cooking
+	Turn raw fish in to cooked fish. There are ranges everywhere so no need for a fire.
+	I won't add baking until later
+	sinew for crossbow strings
+
+Runecrafting
+	Will not be added until Rune Mysteries is added along with agility-based locations. Agility will be VERY important for runecrafting.
+	Teleports and other travel methods (unlocked for your runecrafters) will also be very important.
+
+Fletching
+	cutting and stringing bows (2h ranged) [until combat, buy feathers from a store]
+	fletching arrows
+	cutting crossbow stocks 
+	assembling crossbows (1h ranged only)
+	fletching bolts (including gem tipped, enchanted by magic later)
+	darts, after I add tourist trap
+	
+Crafting
+	pottery (I can deal with urns later, just normal pot crap for now)
+		for clay, buckets will have to be bought. making soft clay will be a crafting activity
+	picking flax + making bowstrings, spinning wool, sinew, tree roots
+	silver: holy symbol + silver bolts
+	cutting gems + gold jewellery (skip low level gems until I program shilo village)
+	leather crafting: cowhides -> dragon hides (skip tanning. garbage activity)
+
+Herblore
+	identifying herbs (from combat drops, farming later)
+	making potions (to be used in combat (e.g. 'set active potion' per adventurer)
+
+Magic (partial combat)
+	note: runes will be buyable/dropped until runecrafting is implemented
+	note: only the basic spellbook may be used until desert treasure and lunar magic are implemented
+	low/high alchemy: runes + item = coins
+	superheat item (smelting alternate)
+	bones to bananas/peaches (peaches by default now... unsure about MTA. peaches are not tradeable)
+	enchant crossbow bolts
+	enchant jewellery
+	teleportation (note: relevant teleports will be coded on to the skills themselves, not here)
+	
+Summoning (Partial Combat)
+	pouches+shards+thirds = familiar pouches
+	familiar pouches -> scrolls
+	note: wolf whistle is not required to start the skill
+	note: use of familiars will show up in the respective skill (wc, mining etc.)
+		so this will be one of the last skills I add.
+	fighters: bring them to combat. Can be set to tank (take damage, saves food vs pouches) or DPS  (only damage, pouches last X # of ticks)
+	skill boosters: can be used on the respective skill pages. invisible boosts only
+	beast of burden: improves efficiency of all gathering skills when equipped.
+	Forager: generates items. under summoning crafting, may need a 'use forager' tab
+	teleporter: improves efficiency of specific skills.
+		
+Divination (also gathering)
+	no divine locations - the daily method doesnt really work here. also sharing.
+	sign of the porter: improve efficiency of all gathering skills + combat skills
+	portent of restoration: auto-heal near death instead of taking a tick to eat
+	other goods don't seem to be very useful in this MMO style
+	
+Farming (Classified as gathering, but you are crafting. Seeds + compost + water = plants)
+	this will be heavily affected by agility and teleport skills
+	compost making 
+	allotments
+	flowers
+	herbs
+	bush
+	wood trees
+	fruit trees
+	Cacti
+	Mushroom
+	
+Construction (note: with portals etc this can improve combat, prayer training, travel times etc.)
+	purchase a house (location should be irrelevant-ish - house teleport spell may be too complicated)
+	training in tabs, by rooms.
+	sawmill: tasks for manually making planks instead of buying
+	parlour: make chairs
+	kitchen: make larders
+	dining room: make tables
+	workshop: make flat-pack furniture, make teleport tablets
+	chapel: prayer training
+	portal chamber: affects teleportation (free teleports if using house)
+ 
+COMBAT SKILLS (Crafting in their own way by getting drops… but requires a lot more math & prep):
+	Combat is one of the skills that will involve actual inventory management.
+	You start with only the hero, but you will gain up to 10 combatants as you approach combat level 168:
+	one every 15 levels starting at (20, 35, 50, 65, 80, 95, 110, 125, 140, 155)
+	(note: RotS uses 4 players, most bosses appear to have no limit)
+	one tab for each combatant will have a paper doll and an inventory box (not 28 slots).
+	each slot on the paper doll can be clicked. this will open a tab of possible equipment for that slot.
+		equipment will check level, not number. You can assign gear if you have 0 quantity.
+		hero will use combat style depending on the mainhand weapon only.
+		when equipping a magic weapon, you will be asked to select a spell
+	once the paper doll is filled out, you can pick relevant bag items:
+		food, potions, runes etc. preset items so you can't bring just anything. all stackable and drawn from the bank as required.
+		only one (or a few?) food & potion types may be drawn from the bank
+	you will have a summoning tab separately to use pouches & summoning points
+	you will have a prayer tab to set prayer logic (which prayers you want active) & prayer points	
+	your adventurer is now ready to embark. He will attempt to grab everything from your bank each time he leaves.
+		two options: if missing an item, don't leave, or leave anyway with the missing items.
+		
+	selecting a destination: clickable map to select combat locations (very simplified. f2p only to begin with)
+		when a destination is selected, you'll have the option to assign a teleport to reduce travel times.
+	
+	COMBAT SEQUENCE
+		hero grabs everything from the bank.
+		hero travels to destination. agility helps this.
+		hero starts fighting
+			FIGHT SEQUENCE (SIMPLIFIED)
+			track hero health and mob health
+			calculate attack and defense for both
+			each round of combat (normalized attack speeds, every 4 ticks)
+				see if hero is injured and has less health than monster's max hit. If so, eat food instead of attacking.
+					if no food available, hero returns home instead of fighting
+				if familiar died, attempt to summon another one. If no summoning points/pouches available, skip.
+					if summoning potion equipped and points @ minimum, drink summoning potion
+				if prayer points @ minimum and potion equipped, drink one
+				if any combat potions equipped and temporary level = actual level, drink one
+				
+				hero attacks. if hit, reduce weapon durability by 1, apply attack damage. (2 attacks for dual wielding, 100% and 50% damage. 1 150% attack for 2h). if using magic, remove the runes. if using ranged, remove an arrow.
+				melee weapons are stackable (like arrows/runes) so the hero will draw them from the bank as required while fighting.
+				monster attacks. if hit, reduce armor durability by 1, apply attack damage.
+					if familiar is tanking, no durability loss. remove hit points from familiar
+					
+				prayer ticks: remove # of prayer points
+				summoning ticks: remove # of summoning points (may need to make this more granular than 99 points)
+				potion effects: every 100 ticks, lower the temporary level by 1 unless temp = current
+				
+				if monster dies, enter loot sequence.
+				note: this is very simplified. Dragons (antifire potions/shield), poison, special attacks, BOSSES will greatly complicate combat.
+			note: show the combat/loot sequences only on focused tab. The variable inputs are there regardless. Use a separate function to update the screen.
+				
+			
+			LOOT SEQUENCE:
+				each monster needs a drop table. All of this can be obtained from the runescape wiki.
+				guaranteed, common, uncommon, rare, very rare, super rare (1, 1 to 10/100/1000/10000/100000-1M)
+					add the guaranteed items always.
+					when a mob is slain, roll a die to determine which class of item to drop.
+						if ring of wealth is equipped, there is a chance to roll on this table too.
+					when a class is decided, go through that drop table:
+						drop table is an array of items that can drop for each mob
+						a random number will be used to select an item from that table and drop it.
+				
+Attack + Strength [melee] (RS should have combined these years ago)
+	gain Xp for kills
+	these levels will be used when equipping gear or calculating damage
+Defense
+	gain XP for kills
+Constitution
+	gain XP for kills
+	constitution x 100 is your number of hitpoints.
+	I will probably assign ALL shields hitpoints, in greater value.
+	combat will need rebalancing for gear to make armor more reliable.
+Prayer
+	two tabs: one for training, one for use/fighting
+	training: burying and POH only to start. maybe ectofuntus later, maybe 
+	usage: each
+	
+Ranged
+	gain Xp for kills
+	these levels will be used when equipping gear or calculating damage
+Magic (partial crafting)
+	gain Xp for kills
+	these levels will be used when equipping gear or calculating damage
+Summoning (partial Crafting)
+	each combatant will have a 'combat familiar' box to assign a fighter or BoB
+ 
+SPECIAL CASE: SLAYER
+This will just use combat skills, but will heavily rely on your agility level to travel to different locations. It will be non-automated: You send your adventurer to the slayer master, get a task, and then send adventurers out.
+It COULD be possible to eventually automate it by having a small number (10) of slayer assignments at any given level, letting slaying adventurers use the slayer gem to get new tasks, and leaving 1 adventurer in each location.
+
+SPECIAL CASE: AGILITY
+When I program different locations for the gathering skills, I can set the agility level to decrease travel times. It can also decrease travel for some crafting skills.
+ 
+SPECIAL CASE: DUNGEONEERING
+This will be a semi-active way to play the game… it basically uses all the other skills. There will be a way to automate it, but it’ll involve sending 5 people in. They will gather items according to their skills and perform combat etc? It would be a diverse XP source but it may be easier just to send an adventuring party out and their clear time depends on your total skills and complexity etc.
+basically: randomly generate a dungeon (array of rooms and doors between each. a 16 room dungeon has 24 spots for doors)
+			hero (soloing) clicks on the task in the room (puzzle, combat skill) or the door they want to go through.
+			special cases for special rooms etc.
+			this will probably be one of the last things I program; probably after ALL f2p quests are implemented.
+
+SOFT RESETS: 
+	lore-wise: maybe generate some kind of final boss to fight that gets bigger every soft reset? 
+	the world guardian is here to stop this force, he needs to assemble a team of 10 adventurers
+	upon defeat, the game is soft reset:
+		all experience returns to 0
+		all items and gold return to 0
+		all quests are set to not started 
+		all progress on the completionist cape is RETAINED besides skill levels
+		world guardian boss doubles health
+		gain benefits in each skill depending on the level reached:
+			gathering: 1% better (multiplicative, not additive) chance at gathering items for every 100 levels earned.
+			production, slayer, agility, dungeoneering: 1% more experience (M, not A) for producing items (or performing skill) for every 100 levels earned
+			combat: M/R/M: 1% more damage, 1% more xp (M, not A) for every 100 levels earned
+					defence: 1% less damage taken
+					constitution: 1% more life
+					prayer: 1% more max prayer points
+					summoning: 1% more damage done by familiars in combat
+					

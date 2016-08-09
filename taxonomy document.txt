@@ -1,0 +1,40 @@
+Level 1: items. the object
+Level 2: category. Includes the following:
+	currency: anything in runescape (coins, tokkul) used as a currency.
+	mining: will include anything gathered directly by mining (incl. rune essence), and pickaxes
+	fishing: all raw fish, equipment, bait, feathers
+	woodcutting: all logs and hatchets
+	hunter: tools used for hunting and drops from the creatures
+	divination: divine energy and signs of the porter, and portents of restoration
+	smithing: all bars (note: gear will be handled separately) (note2: arrowheads, unfletched bolts go to fletching)
+	cooking: cooked fish. later on I'll add baking (bread, pies etc.)
+	runecrafting: talismans here. (this may be an unnecessary category - evaluate w/ rc skill)
+	fletching: bowstrings, unstrung bows, crossbow limbs+stocks, unfinished arrow parts
+	herblore: herbs and potions. seconds when not in other use.
+	magic: runes, staves, and magic equipment (note: will include enchanted jewellery)
+	melee: melee equipment, weapons
+	ranged: ranged equipment, weapons
+	summoning: pouches, shards, and thirds that don't fall in another category
+	crafting: leather, pottery, flax, jewellery,
+	farming: all seeds, compost. most farming tools will be ignored since seeds are expendable
+	construction: planks and flatpack furniture, construction supplies
+	quest: items used for quests and nothing else.
+	misc: catch-all for other items until I need to define a new category.
+			note: most items dropped uniquely from monsters will fall in to one of these categories.
+Level 3: subcategories
+	for example under mining, we'd use ores, pickaxes
+	under woodcutting, we'd use logs, hatchets
+	pickaxes/hatchets are in mining/woodcutting because they are used by those skills, even though
+	smithing produces them. I am more likely to structure a loop where the item is used, as production
+	will be a specific player choice, but use can be automated (e.g. if a hatchet breaks, use the next unbroken one)
+Level 4: individual items
+	e.g. 'copper_ore'
+Level 5: properties
+
+All items should have
+Name
+ID (for g/e purposes – if price is -1, item is not tradeable)
+GE price
+shop price (if price is -1, item can not be purchased at a shop)
+High alch price
+Then various properties based on the type (damage, accuracy etc.)
