@@ -14,78 +14,78 @@
 <div id='mining' class='tabcontent'> <!--DIV for the mining skill-->
 
 <button style="background-image:url(images/ores/Copper_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="copper_ore.total"></span></div>
+<div class='tlnumber rst'><span id="copper.total"></span></div>
 <div class='bottomlogtext rst'>Copper Ore</div> </button>
 
 <button style="background-image:url(images/ores/Tin_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="tin_ore.total"></span></div>
+<div class='tlnumber rst'><span id="tin.total"></span></div>
 <div class='bottomlogtext rst'>Tin Ore</div> </button>
 
 <button style="background-image:url(images/ores/Iron_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="iron_ore.total"></span></div>
+<div class='tlnumber rst'><span id="iron.total"></span></div>
 <div class='bottomlogtext rst'>Iron Ore</div> </button>
 
 <button style="background-image:url(images/ores/Silver_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="silver_ore.total"></span></div>
+<div class='tlnumber rst'><span id="silver.total"></span></div>
 <div class='bottomlogtext rst'>Silver Ore</div> </button>
 
 <button style="background-image:url(images/ores/Coal_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="coal_ore.total"></span></div>
+<div class='tlnumber rst'><span id="coal.total"></span></div>
 <div class='bottomlogtext rst'>Coal</div> </button>
 
 <button style="background-image:url(images/ores/Gold_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="gold_ore.total"></span></div>
+<div class='tlnumber rst'><span id="gold.total"></span></div>
 <div class='bottomlogtext rst'>Gold Ore</div> </button>
 
 <button style="background-image:url(images/ores/Mithril_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="mithril_ore.total"></span></div>
+<div class='tlnumber rst'><span id="mithril.total"></span></div>
 <div class='bottomlogtext rst'>Mithril Ore</div> </button>
 
 <button style="background-image:url(images/ores/Adamantite_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="adamantite_ore.total"></span></div>
+<div class='tlnumber rst'><span id="adamantite.total"></span></div>
 <div class='bottomlogtext rst'>Adamantite</div> </button>
 
 <button style="background-image:url(images/ores/Runite_ore.png)" class='itemicon'>
-<div class='tlnumber rst'><span id="runite_ore.total"></span></div>
+<div class='tlnumber rst'><span id="runite.total"></span></div>
 <div class='bottomlogtext rst'>Runite Ore</div> </button> <br>
 
 <p class='rst' style='font-size:125%'>
 hero location: <span id="hero_location"></span>  <br>
 <span id="idle_miners"></span> idle woodcutters <br>
-current pickaxe: <span id="current_pickaxe.name"></span><br>
+current pickaxe: <span id="mining_tool"></span><br>
 mining level: <span id="hero_mining_lvl"></span><br> 
 mining xp: <span id="hero_mining_xp"></span><br>
 </p>
 
-<button class='itemicon' onClick="equip_pickaxe('no')"> <!--remove hatchet-->
+<button class='itemicon' onClick="equip_tool('mining', 0)"> <!--remove hatchet-->
 <p class='rst'>Remove Pickaxe </p>
 </button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Bronze_pickaxe.png);" onClick="equip_pickaxe('bronze')"> <!--bronze-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Bronze_pickaxe.png);" onClick="equip_tool('mining',1)"> <!--bronze-->
 <div class='tlnumber rst'><span id="bronze_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="bronze_pickaxe.durability"></span></div></button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Iron_pickaxe.png);" onClick="equip_pickaxe('iron')"> <!--iron-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Iron_pickaxe.png);" onClick="equip_tool('mining',2)"> <!--iron-->
 <div class='tlnumber rst'><span id="iron_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="iron_pickaxe.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Steel_pickaxe.png);" onClick="equip_pickaxe('steel')"> <!--steel-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Steel_pickaxe.png);" onClick="equip_tool('mining',3)"> <!--steel-->
 <div class='tlnumber rst'><span id="steel_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="steel_pickaxe.durability"></span></div></button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Mithril_pickaxe.png);" onClick="equip_pickaxe('mithril')"> <!--mithril-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Mithril_pickaxe.png);" onClick="equip_tool('mining',4)"> <!--mithril-->
 <div class='tlnumber rst'><span id="mithril_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="mithril_pickaxe.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Adamant_pickaxe.png);" onClick="equip_pickaxe('adamant')"> <!--adamant-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Adamant_pickaxe.png);" onClick="equip_tool('mining',5)"> <!--adamant-->
 <div class='tlnumber rst'><span id="adamant_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="adamant_pickaxe.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Rune_pickaxe.png);" onClick="equip_pickaxe('rune')"> <!--rune-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Rune_pickaxe.png);" onClick="equip_tool('mining',6)"> <!--rune-->
 <div class='tlnumber rst'><span id="rune_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="rune_pickaxe.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/pickaxes/Dragon_pickaxe.png);" onClick="equip_pickaxe('dragon')"> <!--dragon-->
+<button class='itemicon' style="background-image:url(images/pickaxes/Dragon_pickaxe.png);" onClick="equip_tool('mining',7)"> <!--dragon-->
 <div class='tlnumber rst'><span id="dragon_pickaxe.total"></span></div>
 <div class='trnumber rst'><span id="dragon_pickaxe.durability"></span></div> </button>
 <br>
@@ -134,44 +134,44 @@ mining xp: <span id="hero_mining_xp"></span><br>
 <p class='rst' style='font-size:125%'>
 hero location: <span id="hero_location"></span>  <br>
 <span id="idle_tree_woodcutters"></span> idle woodcutters <br>
-current hatchet: <span id="current_hatchet.name"></span><br>
+current hatchet: <span id="woodcutting_tool"></span><br>
 woodcutting level: <span id="hero_wc_lvl"></span><br> 
 woodcutting xp: <span id="hero_wc_xp"></span><br>
 </p>
 
-<button class='itemicon' onClick="equip_hatchet('no')"> <!--remove hatchet-->
+<button class='itemicon' onClick="equip_tool('woodcutting', 0)"> <!--remove hatchet-->
 <p class='rst'>Remove Hatchet </p>
 </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Bronze_hatchet.png);" onClick="equip_hatchet('bronze')"> <!--bronze-->
+<button class='itemicon' style="background-image:url(images/hatchets/Bronze_hatchet.png);" onClick="equip_tool('woodcutting', 1)"> <!--bronze-->
 <div class='tlnumber rst'><span id="bronze_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="bronze_hatchet.durability"></span></div></button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Iron_hatchet.png);" onClick="equip_hatchet('iron')"> <!--iron-->
+<button class='itemicon' style="background-image:url(images/hatchets/Iron_hatchet.png);" onClick="equip_tool('woodcutting', 2)"> <!--iron-->
 <div class='tlnumber rst'><span id="iron_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="iron_hatchet.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Steel_hatchet.png);" onClick="equip_hatchet('steel')"> <!--steel-->
+<button class='itemicon' style="background-image:url(images/hatchets/Steel_hatchet.png);" onClick="equip_tool('woodcutting', 3)"> <!--steel-->
 <div class='tlnumber rst'><span id="steel_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="steel_hatchet.durability"></span></div></button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Black_hatchet.png);" onClick="equip_hatchet('black')"> <!--black-->
+<button class='itemicon' style="background-image:url(images/hatchets/Black_hatchet.png);" onClick="equip_tool('woodcutting', 4)"> <!--black-->
 <div class='tlnumber rst'><span id="black_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="black_hatchet.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Mithril_hatchet.png);" onClick="equip_hatchet('mithril')"> <!--mithril-->
+<button class='itemicon' style="background-image:url(images/hatchets/Mithril_hatchet.png);" onClick="equip_tool('woodcutting', 5)"> <!--mithril-->
 <div class='tlnumber rst'><span id="mithril_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="mithril_hatchet.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Adamant_hatchet.png);" onClick="equip_hatchet('adamant')"> <!--adamant-->
+<button class='itemicon' style="background-image:url(images/hatchets/Adamant_hatchet.png);" onClick="equip_tool('woodcutting', 6)"> <!--adamant-->
 <div class='tlnumber rst'><span id="adamant_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="adamant_hatchet.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Rune_hatchet.png);" onClick="equip_hatchet('rune')"> <!--rune-->
+<button class='itemicon' style="background-image:url(images/hatchets/Rune_hatchet.png);" onClick="equip_tool('woodcutting', 7)"> <!--rune-->
 <div class='tlnumber rst'><span id="rune_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="rune_hatchet.durability"></span></div> </button>
 
-<button class='itemicon' style="background-image:url(images/hatchets/Dragon_hatchet.png);" onClick="equip_hatchet('dragon')"> <!--dragon-->
+<button class='itemicon' style="background-image:url(images/hatchets/Dragon_hatchet.png);" onClick="equip_tool('woodcutting', 8)"> <!--dragon-->
 <div class='tlnumber rst'><span id="dragon_hatchet.total"></span></div>
 <div class='trnumber rst'><span id="dragon_hatchet.durability"></span></div> </button>
 <br>
