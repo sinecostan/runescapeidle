@@ -52,7 +52,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 	background-color: #443C31;	
 }
 
-.bottomlogtext { //bottom text for logs or hatchets
+.bottomicontext { //bottom text for logs or hatchets
 	margin: 0;
 	text-align: center;
 	position: relative;
@@ -61,7 +61,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 	transform: translate(0%,150%);
 }
 
-.tree {
+.resource {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	height: 150px;
@@ -133,7 +133,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 	transform: translate(0%,-260%);
 }
 
-.trnumbertree{ /*top-right numbers for the trees*/
+.trnumberresource{ /*top-right numbers for the trees*/
 	margin: 0;
 	text-align: right;
 	position: relative;
@@ -142,7 +142,7 @@ ul.tab li a:focus, .active {background-color: #ccc;}
 	transform: translate(0%,-550%);
 }
 
-.bottomtreetext {
+.bottomresourcetext {
 	margin: 0;
 	text-align: center;
 	position: relative;
