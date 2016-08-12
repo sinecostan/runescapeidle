@@ -155,8 +155,6 @@ items['woodcutting']['tools'] = {
 	level:1,
 	price:1,
 	accuracy:0,
-	damage:1,
-	speed:5,
 	durability:1
 	},
 	bronze:{
@@ -165,8 +163,6 @@ items['woodcutting']['tools'] = {
 	level:1,
 	price:179,
 	accuracy:110,
-	damage:30,
-	speed:5,
 	durability:110
 	},
 	iron:{
@@ -175,8 +171,6 @@ items['woodcutting']['tools'] = {
 	level:10,
 	price:279,
 	accuracy:202,
-	damage:61,
-	speed:5,
 	durability:202
 	},
 	steel:{
@@ -185,8 +179,6 @@ items['woodcutting']['tools'] = {
 	level:20,
 	price:749,
 	accuracy:316,
-	damage:122,
-	speed:5,
 	durability:316
 	},
 	black:{
@@ -195,8 +187,6 @@ items['woodcutting']['tools'] = {
 	level:25,
 	price:822,
 	accuracy:381,
-	damage:147,
-	speed:5,
 	durability:381
 	},
 	mithril:{
@@ -205,8 +195,6 @@ items['woodcutting']['tools'] = {
 	level:30,
 	price:1252,
 	accuracy:454,
-	damage:183,
-	speed:5,
 	durability:454
 	},
 	adamant:{
@@ -215,8 +203,6 @@ items['woodcutting']['tools'] = {
 	level:40,
 	price:2219,
 	accuracy:628,
-	damage:245,
-	speed:5,
 	durability:628 
 	},
 	rune:{
@@ -225,8 +211,6 @@ items['woodcutting']['tools'] = {
 	level:50,
 	price:7377,
 	accuracy:850,
-	damage:306,
-	speed:5,
 	durability:850
 	},
 	dragon:{
@@ -235,8 +219,6 @@ items['woodcutting']['tools'] = {
 	level:60,
 	price:1971989,
 	accuracy:1132,
-	damage:367,
-	speed:5,
 	durability:1132
 	}
 };
@@ -346,8 +328,6 @@ items['mining']['tools'] = {
 	level:1,
 	price:1,
 	accuracy:0,
-	damage:1,
-	speed:5,
 	durability:1
 	},
 	bronze:{
@@ -356,8 +336,6 @@ items['mining']['tools'] = {
 	level:1,
 	price:179,
 	accuracy:110,
-	damage:30,
-	speed:5,
 	durability:110
 	},
 	iron:{
@@ -366,8 +344,6 @@ items['mining']['tools'] = {
 	level:10,
 	price:279,
 	accuracy:202,
-	damage:61,
-	speed:5,
 	durability:202
 	},
 	steel:{
@@ -376,8 +352,6 @@ items['mining']['tools'] = {
 	level:20,
 	price:749,
 	accuracy:316,
-	damage:122,
-	speed:5,
 	durability:316
 	},
 	mithril:{
@@ -386,8 +360,6 @@ items['mining']['tools'] = {
 	level:30,
 	price:1252,
 	accuracy:454,
-	damage:183,
-	speed:5,
 	durability:454
 	},
 	adamant:{
@@ -396,8 +368,6 @@ items['mining']['tools'] = {
 	level:40,
 	price:2219,
 	accuracy:628,
-	damage:245,
-	speed:5,
 	durability:628 
 	},
 	rune:{
@@ -406,8 +376,6 @@ items['mining']['tools'] = {
 	level:50,
 	price:7377,
 	accuracy:850,
-	damage:306,
-	speed:5,
 	durability:850
 	},
 	dragon:{
@@ -416,8 +384,6 @@ items['mining']['tools'] = {
 	level:60,
 	price:1971989,
 	accuracy:1132,
-	damage:367,
-	speed:5,
 	durability:1132
 	}
 };
