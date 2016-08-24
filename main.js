@@ -41,7 +41,7 @@ var xp_table = [0,83,174,276,388,512,650,801,969,1154,1562,2014,2512,3060,3668,4
 var items = {
 	currency : {}, //anything in runescape (coins, tokkul) used as a currency. No levels below this
 	mining : {tools : {}, ore_types : {}, uncut_gems : {}}, //will include anything gathered directly by mining (incl. rune essence), and pickaxes
-	fishing : {tools : {}, raw_fish : {}, bait : {}}, //all raw fish, equipment, bait, feathers
+	fishing : {tools : {}, raw_fish_types : {}}, //all raw fish, equipment, bait, feathers
 	woodcutting : {tools : {}, log_types : {}}, //all logs and hatchets
 	hunter: {tools: {}, goods : {}}, //tools used for hunting and drops from the creatures
 	divination: {energy : {}, signs : {}, portents : {}}, // divine energy and signs of the porter, and portents of restoration
