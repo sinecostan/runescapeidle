@@ -413,8 +413,8 @@ items['fishing']['tools'] = {
 	//NOTE: none of these are actually set up yet (below)
 	big_fishing_net:{
 	name:'Big Fishing Net',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	},
 	feather:{
 	name:'Feather',
@@ -428,18 +428,18 @@ items['fishing']['tools'] = {
 	},
 	fishing_rod:{
 	name:'Fishing Rod',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	},
 	fly_fishing_rod:{
 	name:'Fly Fishing Rod',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	},
 	harpoon:{
 	name:'Harpoon',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	},
 	living_minerals:{
 	name:'Living Minerals',
@@ -448,13 +448,13 @@ items['fishing']['tools'] = {
 	},
 	lobster_pot:{
 	name:'Lobster Pot',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	},
 	small_fishing_net:{
 	name:'Small Fishing Net',
-	total:0,
-	durability:'∞'
+	total:1,
+	durability:'n/a'
 	}
 };
 
@@ -683,7 +683,7 @@ skillprops['mining'] = {
 };
 
 skillprops['fishing'] = {
-	workers:[1,0,0,0,0,0,0,0,0],
+	workers:[1,0,0,0,0,0,0,0,0,0],
 	nodenames:{
 		small_net:['raw_shrimps','raw_anchovies','raw_monkfish'],
 		bait_rod_salt:['raw_sardine','raw_herring'],
@@ -817,22 +817,23 @@ items['fishing']['tools']['fishing_bait']['total'] = 1000;
 
 
 function fishing(){
-	for (i=1; i <= Object.keys(skillprops['fishing']['nodenames']).length - 1; i++){
+	//note: fishing doesn't use an idle worker object, so the indices will be offset by -1, but the worker array still has the first entry as idle!
+	for (i=0; i <= Object.keys(skillprops['fishing']['nodenames']).length; i++){
 		var fish_counter = 0; //used to count the # of fish active at each node
-		if (skillprops['fishing']['workers'][i] > 0){
+		if (skillprops['fishing']['workers'][i+1] > 0){
 			fish_names_object = Object.getOwnPropertyNames(skillprops['fishing']['nodenames']);
-			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i-1]]) {
+			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i]]) {
 				//bug in the above line? skillprops ['small_net'][0] should return 'raw_shrimps' but it can't read property '0' of undefined.
 				if (items['fishing']['raw_fish_types'][fish_name]['active'] === true){
 					fish_counter++ //the fish counter is used to divide the probability of success for each active fish
 				}	
 			}
-			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i-1]]) { //now we run through a catch chance for each fish
+			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i]]) { //now we run through a catch chance for each fish
 				if (items['fishing']['raw_fish_types'][fish_name]['active'] === true){
 					var hero_pow = Math.pow(skillprops['fishing']['level'], 3); //only need to do the hero power calculations once for each node
 					var accuracy = (0.0008*hero_pow+4*skillprops['fishing']['level']+40)*3.5;	
 					var gatherchance = 0.04*accuracy/(items['fishing']['raw_fish_types'][fish_name]['defence']*fish_counter); //figure out the chance of gathering from node per tick
-					for (j = 1; j <= skillprops['fishing']['workers'][i]; j++){ //try gathering from node once per worker
+					for (j = 1; j <= skillprops['fishing']['workers'][i+1]; j++){ //try gathering from node once per worker
 					//note: this doesn't yet check to make sure bait is available.
 					//need to unassign all workers when I reach 0 bait (make them all idle)
 						if (Math.random() < gatherchance) {
@@ -851,7 +852,7 @@ function fishing(){
 								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
 								items['fishing']['tools']['living_minerals']['total']--	
 							}
-							else if (fish_names_object[i-1] !== 'bait_rod_fresh' && fish_names_object[i-1] !== 'bait_rod_salt' && fish_names_object[i-1] !== 'rock_bait' && fish_names_object[i-1] !== 'rock_minerals') {
+							else if (fish_names_object[i-1] !== 'bait_rod_fresh' && fish_names_object[i-1] !== 'bait_rod_salt' && fish_names_object[i-1] !== 'rock_bait' && fish_names_object[i-1] !== 'rock_minerals' && fish_names_object[i-1] !== 'fly_rod') {
 								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
 								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
 							}
@@ -956,6 +957,29 @@ function update_display () {
 	goodname = 'hero_' + active_skill[0] + '_xp';
 	document.getElementById(goodname).innerHTML = skillprops[active_skill[0]]['experience'];
 }
+
+//this bit of code is to initialize zeroes for all of the icons that aren't regularly updated by update_display()
+//for example, the number of workers at each node.
+function initialize_display(){
+	var goodname = ''//this will be the name of the thing we're displaying
+	var skillnamesobject = Object.getOwnPropertyNames(skillprops); //should return: 0:'woodcutting', 1:'mining' etc.
+	for (i = 0; i < skillnamesobject.length; i++){
+		var nodenamesobject = Object.getOwnPropertyNames(skillprops[skillnamesobject[i]]['nodenames']); //should return: 0:'logs', 1:'oak' for the first iteration
+		if (skillnamesobject[i] === 'fishing'){
+			for (j=0; j < nodenamesobject.length; j++){
+				goodname = nodenamesobject[j] + '_' + skillnamesobject[i] + '_workers';
+				document.getElementById(goodname).innerHTML = skillprops[skillnamesobject[i]]['workers'][j+1];
+			}
+		}
+		else {
+			for (j=1; j < nodenamesobject.length - 1; j++){
+				goodname = skillprops[skillnamesobject[i]]['nodenames'][j] + '_' + skillnamesobject[i] + '_workers';
+				document.getElementById(goodname).innerHTML = skillprops[skillnamesobject[i]]['workers'][j];
+			}
+		}
+	}
+}
+initialize_display();
 
 window.setInterval(function(){
 	
