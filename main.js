@@ -987,7 +987,7 @@ window.setInterval(function(){
 	woodcutting();
 	mining();
 	fishing();
-}, 10);
+}, 1);
 
 function prettify(input){ //currently not used, I'll have to see if I get any weird decimals in important values later.
     var output = Math.round(input * 1000000)/1000000;
