@@ -897,7 +897,7 @@ function gainxpandlevel(categoryin, subcategoryin, nodenamein){
 		helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a worker
 	}
 	skillprops[categoryin]['experience'] += items[categoryin][subcategoryin][nodenamein]['experience']; //gain xp for gathering
-	if (skillprops[categoryin]['experience'] > xp_table[skillprops[categoryin]['level']]) {
+	if (skillprops[categoryin]['experience'] > xp_table[skillprops[categoryin]['level']] && skillprops[categoryin]['level'] < 120) { //can't level past 120
 		skillprops[categoryin]['level']++ //if xp overflows in to the next level, add a new level
 		if (helperflag === true && skillprops[categoryin]['level'] % 11 === 0) {
 			skillprops[categoryin]['workers'][0]++ //if dinged level XX, add an idle worker
