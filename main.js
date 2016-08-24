@@ -852,7 +852,7 @@ function fishing(){
 								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
 								items['fishing']['tools']['living_minerals']['total']--	
 							}
-							else if (fish_names_object[i-1] !== 'bait_rod_fresh' && fish_names_object[i-1] !== 'bait_rod_salt' && fish_names_object[i-1] !== 'rock_bait' && fish_names_object[i-1] !== 'rock_minerals' && fish_names_object[i-1] !== 'fly_rod') {
+							else if (fish_names_object[i] !== 'bait_rod_fresh' && fish_names_object[i] !== 'bait_rod_salt' && fish_names_object[i] !== 'rock_bait' && fish_names_object[i] !== 'rock_minerals' && fish_names_object[i] !== 'fly_rod') {
 								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
 								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
 							}
