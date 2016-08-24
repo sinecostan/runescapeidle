@@ -2,7 +2,6 @@
 
 // http://stackoverflow.com/questions/12612391/javascript-use-getelementbyid-to-populate-multiple-divs
 // http://stackoverflow.com/questions/11515383/why-is-element-innerhtml-bad-code
-// consider this to populate hero_location - getelementbyid may not be a good way to do this.
 
 //styling of the tabs begins here - eventually change this to a bunch of skill buttons from runescape
 
@@ -64,7 +63,7 @@ var items = {
 };
 
 // level 3-4-5: individual items and their values
-items['woodcutting']['log_types'] = {
+items['woodcutting']['log_types'] = { //I can probably get rid of all fm_experience entries
 	logs:{
 	name:'logs',
 	total:0,
@@ -155,6 +154,7 @@ items['woodcutting']['tools'] = {
 	level:1,
 	price:1,
 	accuracy:0,
+	max_durability:1,
 	durability:1
 	},
 	bronze:{
@@ -163,7 +163,8 @@ items['woodcutting']['tools'] = {
 	level:1,
 	price:179,
 	accuracy:110,
-	durability:110
+	max_durability:500,
+	durability:500
 	},
 	iron:{
 	name:'iron hatchet',
@@ -171,7 +172,8 @@ items['woodcutting']['tools'] = {
 	level:10,
 	price:279,
 	accuracy:202,
-	durability:202
+	max_durability:900,
+	durability:900
 	},
 	steel:{
 	name:'steel hatchet',
@@ -179,7 +181,8 @@ items['woodcutting']['tools'] = {
 	level:20,
 	price:749,
 	accuracy:316,
-	durability:316
+	max_durability:1600,
+	durability:1600
 	},
 	black:{
 	name:'black hatchet',
@@ -187,7 +190,8 @@ items['woodcutting']['tools'] = {
 	level:25,
 	price:822,
 	accuracy:381,
-	durability:381
+	max_durability:2200,
+	durability:2200
 	},
 	mithril:{
 	name:'mithril hatchet',
@@ -195,7 +199,8 @@ items['woodcutting']['tools'] = {
 	level:30,
 	price:1252,
 	accuracy:454,
-	durability:454
+	max_durability:2900,
+	durability:2900
 	},
 	adamant:{
 	name:'adamant hatchet',
@@ -203,7 +208,8 @@ items['woodcutting']['tools'] = {
 	level:40,
 	price:2219,
 	accuracy:628,
-	durability:628 
+	max_durability:5300,
+	durability:5300 
 	},
 	rune:{
 	name:'rune hatchet',
@@ -211,7 +217,8 @@ items['woodcutting']['tools'] = {
 	level:50,
 	price:7377,
 	accuracy:850,
-	durability:850
+	max_durability:9500,
+	durability:9500
 	},
 	dragon:{
 	name:'dragon hatchet',
@@ -219,7 +226,8 @@ items['woodcutting']['tools'] = {
 	level:60,
 	price:1971989,
 	accuracy:1132,
-	durability:1132
+	max_durability:17100,
+	durability:17100
 	}
 };
 
@@ -328,6 +336,7 @@ items['mining']['tools'] = {
 	level:1,
 	price:1,
 	accuracy:0,
+	max_durability:1,
 	durability:1
 	},
 	bronze:{
@@ -336,7 +345,8 @@ items['mining']['tools'] = {
 	level:1,
 	price:179,
 	accuracy:110,
-	durability:110
+	max_durability:500,
+	durability:500
 	},
 	iron:{
 	name:'iron pickaxe',
@@ -344,7 +354,8 @@ items['mining']['tools'] = {
 	level:10,
 	price:279,
 	accuracy:202,
-	durability:202
+	max_durability:900,
+	durability:900
 	},
 	steel:{
 	name:'steel pickaxe',
@@ -352,7 +363,8 @@ items['mining']['tools'] = {
 	level:20,
 	price:749,
 	accuracy:316,
-	durability:316
+	max_durability:1600,
+	durability:1600
 	},
 	mithril:{
 	name:'mithril pickaxe',
@@ -360,7 +372,8 @@ items['mining']['tools'] = {
 	level:30,
 	price:1252,
 	accuracy:454,
-	durability:454
+	max_durability:2900,
+	durability:2900
 	},
 	adamant:{
 	name:'adamant pickaxe',
@@ -368,7 +381,8 @@ items['mining']['tools'] = {
 	level:40,
 	price:2219,
 	accuracy:628,
-	durability:628 
+	max_durability:5300,
+	durability:5300 
 	},
 	rune:{
 	name:'rune pickaxe',
@@ -376,7 +390,8 @@ items['mining']['tools'] = {
 	level:50,
 	price:7377,
 	accuracy:850,
-	durability:850
+	max_durability:9500,
+	durability:9500
 	},
 	dragon:{
 	name:'dragon pickaxe',
@@ -384,24 +399,275 @@ items['mining']['tools'] = {
 	level:60,
 	price:1971989,
 	accuracy:1132,
-	durability:1132
+	max_durability:17100,
+	durability:17100
 	}
 };
 
+items['fishing']['tools'] = {
+	//tools in fishing work a little differently from those used for mining and woodcutting
+	//fishing tools can just be bought at a shop - they can't be made
+	//fishing already consumes bait/feathers/minerals in order to catch fish, except net/cage fishing.
+	//the tools can probably remain indestructable, and the consumables stay for catching fish
+	//since there is no type of crafting mechanic and thus no REAL need to remove them from the game.
+	//NOTE: none of these are actually set up yet (below)
+	big_fishing_net:{
+	name:'Big Fishing Net',
+	total:0,
+	durability:'∞'
+	},
+	feather:{
+	name:'Feather',
+	total:0,
+	durability:'n/a'
+	},
+	fishing_bait:{
+	name:'Fishing Bait',
+	total:0,
+	durability:'n/a'
+	},
+	fishing_rod:{
+	name:'Fishing Rod',
+	total:0,
+	durability:'∞'
+	},
+	fly_fishing_rod:{
+	name:'Fly Fishing Rod',
+	total:0,
+	durability:'∞'
+	},
+	harpoon:{
+	name:'Harpoon',
+	total:0,
+	durability:'∞'
+	},
+	living_minerals:{
+	name:'Living Minerals',
+	total:0,
+	durability:'n/a'
+	},
+	lobster_pot:{
+	name:'Lobster Pot',
+	total:0,
+	durability:'∞'
+	},
+	small_fishing_net:{
+	name:'Small Fishing Net',
+	total:0,
+	durability:'∞'
+	}
+};
+
+items['fishing']['raw_fish_types'] = {
+	raw_shrimps:{
+	name:'Raw Shrimps',
+	total:0,
+	level:1,
+	defence:45,
+	active:false,
+	node:'small_net',
+	experience:10
+	},
+	raw_sardine:{
+	name:'Raw Sardine',
+	total:0,
+	level:5,
+	defence:61,
+	active:false,
+	node:'bait_rod_salt',
+	experience:20
+	},
+	raw_herring:{
+	name:'Raw Herring',
+	total:0,
+	level:10,
+	defence:81,
+	active:false,
+	node:'bait_rod_salt',
+	experience:30
+	},
+	raw_anchovies:{
+	name:'Raw Anchovies',
+	total:0,
+	level:15,
+	defence:103,
+	active:false,
+	node:'small_net',
+	experience:40
+	},
+	raw_mackerel:{
+	name:'Raw Mackerel',
+	total:0,
+	level:16,
+	defence:108,
+	active:false,
+	node:'big_net',
+	experience:20
+	},
+	raw_trout:{
+	name:'Raw Trout',
+	total:0,
+	level:20,
+	defence:127,
+	active:false,
+	node:'fly_rod',
+	experience:50
+	},
+	raw_cod:{
+	name:'Raw Cod',
+	total:0,
+	level:23,
+	defence:142,
+	active:false,
+	node:'big_net',
+	experience:45
+	},
+	raw_pike:{
+	name:'Raw Pike',
+	total:0,
+	level:25,
+	defence:153,
+	active:true,
+	node:'bait_rod_fresh',
+	experience:60
+	},
+	raw_salmon:{
+	name:'Raw Salmon',
+	total:0,
+	level:30,
+	defence:182,
+	active:false,
+	node:'fly_rod',
+	experience:70
+	},
+	raw_tuna:{
+	name:'Raw Tuna',
+	total:0,
+	level:35,
+	defence:215,
+	active:false,
+	node:'harpoon',
+	experience:80
+	},
+	raw_lobster:{
+	name:'Raw Lobster',
+	total:0,
+	level:40,
+	defence:252,
+	active:true,
+	node:'cage',
+	experience:90
+	},
+	raw_bass:{
+	name:'Raw Bass',
+	total:0,
+	level:46,
+	defence:302,
+	active:false,
+	node:'big_net',
+	experience:100
+	},
+	raw_swordfish:{
+	name:'Raw Swordfish',
+	total:0,
+	level:50,
+	defence:340,
+	active:false,
+	node:'harpoon',
+	experience:100
+	},
+	raw_monkfish:{
+	name:'Raw Monkfish',
+	total:0,
+	level:62,
+	defence:479,
+	active:false,
+	node:'small_net',
+	experience:120
+	},
+	raw_shark:{
+	name:'Raw Shark',
+	total:0,
+	level:76,
+	defence:696,
+	active:false,
+	node:'harpoon',
+	experience:110
+	},
+	raw_cavefish:{
+	name:'Raw Cavefish',
+	total:0,
+	level:85,
+	defence:872,
+	active:true,
+	node:'rock_bait',
+	experience:300
+	},
+	raw_rocktail:{
+	name:'Raw Rocktail',
+	total:0,
+	level:90,
+	defence:984,
+	active:true,
+	node:'rock_minerals',
+	experience:380
+	},
+	//here begins the workaround for the complicated name of these nodes:
+	//the node names will be defined here with the level of their lowest-level fish
+	small_net:{
+	total:'none',
+	level:1
+	},
+	bait_rod_salt:{
+	total:'none',
+	level:5
+	},
+	bait_rod_fresh:{
+	total:'none',
+	level:25
+	},
+	big_net:{
+	total:'none',
+	level:16
+	},
+	fly_rod:{
+	total:'none',
+	level:20
+	},
+	harpoon:{
+	total:'none',
+	level:35
+	},
+	cage:{
+	total:'none',
+	level:40
+	},
+	rock_bait:{
+	total:'none',
+	level:85
+	},
+	rock_minerals:{
+	total:'none',
+	level:90
+	}
+};
+
+
+
 // define a set of properties for each skill
 var skillprops = {
-woodcutting : {}, mining : {}
-//, fishing : {}, farming : {}, hunter : {}, divination : {}, herblore : {}, crafting : {}, fletching : {}, smithing : {}, cooking : {}, firemaking : {}, runecrafting : {}, construction : {}, agility : {}, thieving : {}, slayer : {}, dungeoneering : {}, melee : {}, defence : {}, ranged : {}, prayer : {}, magic : {}, constitution : {}, summoning : {}
+woodcutting : {}, mining : {}, fishing : {}
+//, farming : {}, hunter : {}, divination : {}, herblore : {}, crafting : {}, fletching : {}, smithing : {}, cooking : {}, firemaking : {}, runecrafting : {}, construction : {}, agility : {}, thieving : {}, slayer : {}, dungeoneering : {}, melee : {}, defence : {}, ranged : {}, prayer : {}, magic : {}, constitution : {}, summoning : {}
 } //this is split: we remove skills that aren't yet implemented.
 
 //define a list of all skills
-var skill_list = ['woodcutting', 'mining',  
-//'fishing',  'farming',  'hunter',  'divination',  'herblore',  'crafting',  'fletching',  'smithing',  'cooking',  'firemaking',  'runecrafting',  'construction',  'agility',  'thieving',  'slayer',  'dungeoneering',  'melee',  'defence',  'ranged', 'prayer',  'magic',  'constitution',  'summoning'
+var skill_list = ['woodcutting', 'mining', 'fishing'
+//,  'farming',  'hunter',  'divination',  'herblore',  'crafting',  'fletching',  'smithing',  'cooking',  'firemaking',  'runecrafting',  'construction',  'agility',  'thieving',  'slayer',  'dungeoneering',  'melee',  'defence',  'ranged', 'prayer',  'magic',  'constitution',  'summoning'
 ] //this is split: we remove skills that aren't yet implemented.
 
 //define woodcutting-specific variables
 skillprops['woodcutting'] = {
-	workers:[0,0,0,0,0,0,0,0,0,0], //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
+	workers:[1,0,0,0,0,0,0,0,0,0], //number of woodcutters @ idle, tree, oak, willow, teak, maple, mahogany, yew, magic, elder
 	nodenames:['idle','logs','oak','willow','teak','maple','mahogany','yew','magic','elder'], //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
 	tooltype:['no','bronze','iron','steel','black','mithril','adamant','rune','dragon'], //hatchet metal types
 	current_tool:['No hatchet', 'no'] //tool name and tool type
@@ -409,11 +675,27 @@ skillprops['woodcutting'] = {
 
 //define mining-specific variables
 skillprops['mining'] = {
-	workers:[0,0,0,0,0,0,0,0,0,0], //number of miners @ idle, tin, copper, iron, silver, coal, gold, mithril, adamantite, runite
-	nodenames:['idle', 'copper', 'tin', 'iron', 'silver', 'coal', 'gold', 'mithril', 'adamantite', 'runite'], //tree names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
+	locations:{},
+	workers:[1,0,0,0,0,0,0,0,0,0], //number of miners @ each location 
+	nodenames:['idle', 'copper', 'tin', 'iron', 'silver', 'coal', 'gold', 'mithril', 'adamantite', 'runite'], //rock names, the first entry is idle workers, then trees, then oak trees. following the variable convention, logs, oak_logs will create the right variable names
 	tooltype:['no','bronze','iron','steel','mithril','adamant','rune','dragon'], //pickaxe metal types
 	current_tool:['No pickaxe', 'no'] //tool name and tool type
-}
+};
+
+skillprops['fishing'] = {
+	workers:[1,0,0,0,0,0,0,0,0],
+	nodenames:{
+		small_net:['raw_shrimps','raw_anchovies','raw_monkfish'],
+		bait_rod_salt:['raw_sardine','raw_herring'],
+		bait_rod_fresh:['raw_pike'],
+		big_net:['raw_mackerel','raw_cod','raw_bass'],
+		fly_rod:['raw_trout','raw_salmon'],
+		harpoon:['raw_tuna','raw_swordfish','raw_shark'],
+		cage:['raw_lobster'],
+		rock_bait:['raw_cavefish'],
+		rock_minerals:['raw_rocktail']
+	}
+};
 
 //loop through and set all experience and levels to 0/1; equip no tools
 for (i = 0; i <= skill_list.length - 1; i++){
@@ -421,11 +703,7 @@ for (i = 0; i <= skill_list.length - 1; i++){
 	skillprops[skill_list[i]]['level'] = 1;
 }
 
-//set starting hero location
-var hero_location = ['idle', 0, 'woodcutting', 'log_types']; //default set the hero to woodcutting
-document.getElementById('hero_woodcutting_location').innerHTML = hero_location[0]; //display hero's location
-
-//loop to give the player some hatchets for DEBUGGING PURPOSES!!!!!!
+//loop to give the player some tools for DEBUGGING PURPOSES!!!!!!
 for (i = 1; i <= skillprops['woodcutting']['tooltype'].length - 1; i++){ 
 	items['woodcutting']['tools'][skillprops['woodcutting']['tooltype'][i]]['total'] = 2;
 	if (i < 8){
@@ -449,14 +727,14 @@ function equip_tool(skill, toolvalue){
 }
 
 //function to add a worker to a location (node)
-// e.g. skill = 'mining', itemclass = 'ore_types' node = 1 (copper)
-function addworker(skill, itemclass, node){ 
-	if (skillprops[skill]['workers'][0] > 0 && skillprops[skill]['level'] >= items[skill][itemclass][skillprops[skill]['nodenames'][node]]['level']){ //must have at least 1 idle worker and the required level
+// e.g. skill = 'mining', itemclass = 'ore_types' node = 1 (copper), nodenamein = 'copper'
+function addworker(skill, itemclass, node, nodenamein){ 
+	if (skillprops[skill]['workers'][0] > 0 && skillprops[skill]['level'] >= items[skill][itemclass][nodenamein]['level']){ //must have at least 1 idle worker and the required level
 		skillprops[skill]['workers'][node]++ //add one worker to the location
 		skillprops[skill]['workers'][0]-- //remove 1 idle worker
 		var workerlocname = 'idle_' + active_skill[0] + '_workers';
 		document.getElementById(workerlocname).innerHTML = skillprops[active_skill[0]]['workers'][0];
-		workerlocname = skillprops[skill]['nodenames'][node] + '_' + active_skill[0] + '_workers';
+		workerlocname = nodenamein + '_' + active_skill[0] + '_workers';
 		document.getElementById(workerlocname).innerHTML = skillprops[active_skill[0]]['workers'][node];
 	}
 	else {alert('You do not have any idle workers or the required level to gather this resource.');}
@@ -464,133 +742,166 @@ function addworker(skill, itemclass, node){
 
 //function to remove a worker from a location (node)
 // e.g. skill = 'mining', itemclass = 'ore_types', node = 1 (copper)
-function removeworker(skill, itemclass, node){
+function removeworker(skill, itemclass, node, nodenamein){
 	if (skillprops[skill]['workers'][node] > 0){ //must have at least 1 worker at that node
 		skillprops[skill]['workers'][node]-- //remove one worker from the location
 		skillprops[skill]['workers'][0]++ //add 1 idle worker
 		var workerlocname = 'idle_' + active_skill[0] + '_workers';
 		document.getElementById(workerlocname).innerHTML = skillprops[active_skill[0]]['workers'][0];
-		workerlocname = skillprops[skill]['nodenames'][node] + '_' + active_skill[0] + '_workers';
+		workerlocname = nodenamein + '_' + active_skill[0] + '_workers';
 		document.getElementById(workerlocname).innerHTML = skillprops[active_skill[0]]['workers'][node];		
 	}
 	else {alert('You do not have any workers at that resource');}
 }
 
-//function to gather a resource - running at all times for all gathering skills
-// e.g. category = 'mining', subcategory = 'ore_types', skillprop = 'nodenames'
-function gather_resource(category, subcategory){
-	for (i = 1; i <= skillprops[category]['nodenames'].length - 1; i++){ //run through every node type - no idle node
-		var nodename = skillprops[category]['nodenames'][i];
-		if (skillprops[category]['workers'][i] > 0) { //only if the workers are here
-			var hero_pow = Math.pow(skillprops[category]['level'], 3); //only need to do the hero power calculations once for each node
-			var accuracy = (0.0008*hero_pow+4*skillprops[category]['level']+40)+2.5*items[category]['tools'][skillprops[category]['current_tool'][1]]['accuracy'];	
-			var cutchance = 0.04*accuracy/items[category][subcategory][nodename]['defence']; //figure out the chance of gathering from node per tick
-			for (j = 1; j <= skillprops[category]['workers'][i]; j++){ //try gathering from node once per worker
-				var current_tool = skillprops[category]['current_tool'][1];
-				if (Math.random() < cutchance) {
-					var helperflag = false;
-					if  (skillprops[category]['level'] % 11 !== 0) {
-						helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a worker
-					}
-					skillprops[category]['experience'] += items[category][subcategory][nodename]['experience']; //gain xp for gathering
-					if (skillprops[category]['experience'] > xp_table[skillprops[category]['level']]) {
-						skillprops[category]['level']++ //if xp overflows in to the next level, add a new level
-						if (helperflag === true && skillprops[category]['level'] % 11 === 0) {
-							skillprops[category]['workers'][0]++ //if dinged level XX, add an idle worker
-						}	
-					}
-					items[category][subcategory][nodename]['total']++ //gain a resource
-					if (current_tool !== 'no') { //skip all of the durability code if there is no tool equipped
-						items[category]['tools'][current_tool]['durability']-- //remove 1 durability after gathering
-						if (items[category]['tools'][current_tool]['durability'] === 0) { //check to see if durability is down to 0 after gathering
-							items[category]['tools'][current_tool]['total']--  //subtract a tool for breaking
-							items[category]['tools'][current_tool]['durability'] += items[category]['tools'][current_tool]['accuracy']; //set the durability for the next tool to its maximum value
-							if (items[category]['tools'][current_tool]['total'] === 0){ //unequip the tool if there are none left
-								for (k = 0; k <= skillprops[category]['tooltype'].length - 1; k++) { //loop that equips the highest possible level tool if the last current one breaks
-									var toolname = skillprops[category]['tooltype'][k];
-									if (items[category]['tools'][toolname]['total'] > 0 && skillprops[category]['level'] >= items[category]['tools'][toolname]['level']) { //makes sure there is a spare tool that the hero is high enough to use
-										skillprops[category]['current_tool'][1] = toolname; //equip new tool
-										skillprops[category]['current_tool'][0] = items[category]['tools'][toolname]['name']; //equip new tool (show name)
-									}
-								}
-							}
-						}
-					}
+function selectnoderesource(skill, itemclass, itemname){
+	var itemid = itemname + "_button"; //fetch the ID of the element by adding button to the item name
+	var classcheck = document.getElementById(itemid).className; //fetch the class from the element
+	if (classcheck === "itemicon" && skillprops['fishing']['level'] >= items[skill][itemclass][itemname]['level']) { //the hero's level must be high enough & the node must be inactive to toggle
+		document.getElementById(itemid).className =  "itemicon_active";
+		items[skill][itemclass][itemname]['active'] = true;
+	}
+	else {
+		document.getElementById(itemid).className =  "itemicon";
+		items[skill][itemclass][itemname]['active'] = false;
+	}
+}
+
+//splitting functions individually allows me to call them more dynamically. I will call woodcutting separately.
+function woodcutting(){
+	//using the workers @ each node, choose how often to run gather_resource
+	for (i=1; i <= skillprops['woodcutting']['nodenames'].length - 1; i++){
+		var nodename = skillprops['woodcutting']['nodenames'][i];
+		if (skillprops['woodcutting']['workers'][i] > 0) { //only if the workers are here
+			var hero_pow = Math.pow(skillprops['woodcutting']['level'], 3); //only need to do the hero power calculations once for each node
+			var accuracy = (0.0008*hero_pow+4*skillprops['woodcutting']['level']+40)+2.5*items['woodcutting']['tools'][skillprops['woodcutting']['current_tool'][1]]['accuracy'];	
+			var gatherchance = 0.04*accuracy/items['woodcutting']['log_types'][nodename]['defence']; //figure out the chance of gathering from node per tick
+			for (j = 1; j <= skillprops['woodcutting']['workers'][i]; j++){ //try gathering from node once per worker
+				if (skillprops['woodcutting']['current_tool'][1] !== 'no') { //skip all of the durability code if there is no tool equipped
+						process_durability('woodcutting');
 				}
-				//if mining, there is a chance to randomly generate a gem
-				if (category === 'mining') {
-					mine_gem();
-				}				
+				if (Math.random() < gatherchance) {
+					gainxpandlevel('woodcutting', 'log_types', nodename);
+					items['woodcutting']['log_types'][nodename]['total']++ //gain a resource
+				}
 			}
 		}
 	}
 }
 
-
-// this function will assign your hero to gather from a specific node.
-//e.g. category = 'mining', subcategory = 'ore_types' nodename = 'copper', nodeindex = 1;
-function heronode(category, subcategory, nodename, nodeindex){
-	if (skillprops[category]['level'] >= items[category][subcategory][nodename]['level']){ 
-		hero_location[0] = nodename; //make sure this doesn't need to be two lines. hero_location is already declared.	
-		hero_location[1] = nodeindex; //set the treeid of the hero location	
-		hero_location[2] = category; //set the skill the hero is working on
-		hero_location[3] = subcategory; //set the category the hero is gathering from
-		var herolocname = 'hero_' + active_skill[0] + '_location'; //note: this doesn't give the proper location for other skills.
-		/* !!! FIX ME SEE ABOVE LINE !!! */
-		document.getElementById(herolocname).innerHTML = items[category][subcategory][nodename]['name']; //display hero's location	
-	}
-	else{alert('You do not have the required level to gather from this node.')}
+function mining(){
+	//using the workers @ each node, choose how often to run gather_resource
+	//mine_gem(); each tick when calling the gather_resource function
+	for (i=1; i <= skillprops['mining']['nodenames'].length - 1; i++){
+		var nodename = skillprops['mining']['nodenames'][i];
+		if (skillprops['mining']['workers'][i] > 0) { //only if the workers are here
+			var hero_pow = Math.pow(skillprops['mining']['level'], 3); //only need to do the hero power calculations once for each node
+			var accuracy = (0.0008*hero_pow+4*skillprops['mining']['level']+40)+2.5*items['mining']['tools'][skillprops['mining']['current_tool'][1]]['accuracy'];	
+			var gatherchance = 0.04*accuracy/items['mining']['ore_types'][nodename]['defence']; //figure out the chance of gathering from node per tick
+			for (j = 1; j <= skillprops['mining']['workers'][i]; j++){ //try gathering from node once per worker
+				if (skillprops['mining']['current_tool'][1] !== 'no') { //skip all of the durability code if there is no tool equipped
+						process_durability('mining');
+				}
+				if (Math.random() < gatherchance) {
+					mine_gem(); //chance to mine a gem if rock is successful (1/282)
+					gainxpandlevel('mining', 'ore_types', nodename);
+					items['mining']['ore_types'][nodename]['total']++ //gain a resource
+				}
+			}
+		}
+	}	
 }
 
-//this function will gather resources at the hero's current location.
-//uses existing information from hero_location.
-//e.g. [0] = 'copper', [1] = 1, [2] = , [3] = ;
-function hero_gather_resource(){
-	if (hero_location[1] !== 0) { //only if the hero is not idle
-		// set the variables below to reduce calls to the array
-		var nodename = hero_location[0]; 	
-		var nodeindex = hero_location[1]; 
-		var category = hero_location[2]; 
-		var subcategory = hero_location[3]; 
-		var hero_pow = Math.pow(skillprops[category]['level'], 3); //only need to do the hero power calculations once for each node
-		var accuracy = (0.0008*hero_pow+4*skillprops[category]['level']+40)+2.5*items[category]['tools'][skillprops[category]['current_tool'][1]]['accuracy'];	
-		var cutchance = 0.04*accuracy/items[category][subcategory][nodename]['defence']; //figure out the chance of gathering from node per tick
-		var current_tool = skillprops[category]['current_tool'][1];
-		if (Math.random() < cutchance) {
-			var helperflag = false;
-			if  (skillprops[category]['level'] % 11 !== 0) {
-				helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a worker
-			}
-			skillprops[category]['experience'] += items[category][subcategory][nodename]['experience']; //gain xp for gathering
-			if (skillprops[category]['experience'] > xp_table[skillprops[category]['level']]) {
-				skillprops[category]['level']++ //if xp overflows in to the next level, add a new level
-				if (helperflag === true && skillprops[category]['level'] % 11 === 0) {
-					skillprops[category]['workers'][0]++ //if dinged level XX, add an idle worker
+//TESTING PURPOSES ONLY: give bait
+items['fishing']['tools']['fishing_bait']['total'] = 1000;
+
+
+function fishing(){
+	for (i=1; i <= Object.keys(skillprops['fishing']['nodenames']).length - 1; i++){
+		var fish_counter = 0; //used to count the # of fish active at each node
+		if (skillprops['fishing']['workers'][i] > 0){
+			fish_names_object = Object.getOwnPropertyNames(skillprops['fishing']['nodenames']);
+			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i-1]]) {
+				//bug in the above line? skillprops ['small_net'][0] should return 'raw_shrimps' but it can't read property '0' of undefined.
+				if (items['fishing']['raw_fish_types'][fish_name]['active'] === true){
+					fish_counter++ //the fish counter is used to divide the probability of success for each active fish
 				}	
 			}
-			items[category][subcategory][nodename]['total']++ //gain a resource
-			if (current_tool !== 'no') { //skip all of the durability code if there is no tool equipped
-				items[category]['tools'][current_tool]['durability']-- //remove 1 durability after gathering
-				if (items[category]['tools'][current_tool]['durability'] === 0) { //check to see if durability is down to 0 after gathering
-					items[category]['tools'][current_tool]['total']--  //subtract a tool for breaking
-					items[category]['tools'][current_tool]['durability'] += items[category]['tools'][current_tool]['accuracy']; //set the durability for the next tool to its maximum value
-					if (items[category]['tools'][current_tool]['total'] === 0){ //unequip the tool if there are none left
-						for (k = 0; k <= skillprops[category]['tooltype'].length - 1; k++) { //loop that equips the highest possible level tool if the last current one breaks
-							var toolname = skillprops[category]['tooltype'][k];
-							if (items[category]['tools'][toolname]['total'] > 0 && skillprops[category]['level'] >= items[category]['tools'][toolname]['level']) { //makes sure there is a spare tool that the hero is high enough to use
-								skillprops[category]['current_tool'][1] = toolname; //equip new tool
-								skillprops[category]['current_tool'][0] = items[category]['tools'][toolname]['name']; //equip new tool (show name)
+			for (let fish_name of skillprops['fishing']['nodenames'][fish_names_object[i-1]]) { //now we run through a catch chance for each fish
+				if (items['fishing']['raw_fish_types'][fish_name]['active'] === true){
+					var hero_pow = Math.pow(skillprops['fishing']['level'], 3); //only need to do the hero power calculations once for each node
+					var accuracy = (0.0008*hero_pow+4*skillprops['fishing']['level']+40)*3.5;	
+					var gatherchance = 0.04*accuracy/(items['fishing']['raw_fish_types'][fish_name]['defence']*fish_counter); //figure out the chance of gathering from node per tick
+					for (j = 1; j <= skillprops['fishing']['workers'][i]; j++){ //try gathering from node once per worker
+					//note: this doesn't yet check to make sure bait is available.
+					//need to unassign all workers when I reach 0 bait (make them all idle)
+						if (Math.random() < gatherchance) {
+							if (fish_name === 'raw_sardine' && items['fishing']['tools']['fishing_bait']['total'] > 0 || fish_name === 'raw_herring' && items['fishing']['tools']['fishing_bait']['total'] > 0 ||fish_name === 'raw_pike' && items['fishing']['tools']['fishing_bait']['total'] > 0 || fish_name === 'raw_cavefish' && items['fishing']['tools']['fishing_bait']['total'] > 0) { //remove a consumable bait if the fish is caught (as applicable)
+								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
+								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource	
+								items['fishing']['tools']['fishing_bait']['total']--
+							}
+							else if (fish_name === 'raw_salmon' && items['fishing']['tools']['feather']['total'] > 0 || fish_name === 'raw_trout' && items['fishing']['tools']['feather']['total'] > 0) {
+								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
+								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
+								items['fishing']['tools']['feather']['total']--	
+							}
+							else if (fish_name === 'raw_rocktail' && items['fishing']['tools']['living_minerals']['total'] > 0) {
+								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
+								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
+								items['fishing']['tools']['living_minerals']['total']--	
+							}
+							else if (fish_names_object[i-1] !== 'bait_rod_fresh' && fish_names_object[i-1] !== 'bait_rod_salt' && fish_names_object[i-1] !== 'rock_bait' && fish_names_object[i-1] !== 'rock_minerals') {
+								gainxpandlevel('fishing', 'raw_fish_types', fish_name);
+								items['fishing']['raw_fish_types'][fish_name]['total']++ //gain a resource
 							}
 						}
 					}
 				}
 			}
-			//if mining, there is a chance to randomly generate a gem
-			if (category === 'mining') {
-				mine_gem();
+		}
+	}
+}
+
+//NOTE: per the durability and xp functions, all that's left in the  gather_resource function is passing through a counter
+//realistically, once I have checkboxes for each node and up/down arrows for the workers, I can skip all of the looping
+//remember, the calculation on each mine will be x swings of each resource per y ticks
+//e.g. run gather_resource(mining, iron, 2) [skill/node] every X ticks rather than iterating through the array
+
+//this will process the durability of the equipped tool. run when you gather a resource
+//ex: categoryin = 'woodcutting', 
+function process_durability(categoryin){ 
+	var current_tool = skillprops[categoryin]['current_tool'][1];
+	items[categoryin]['tools'][current_tool]['durability']-- //remove 1 durability after gathering
+	if (items[categoryin]['tools'][current_tool]['durability'] === 0) { //check to see if durability is down to 0 after gathering
+		items[categoryin]['tools'][current_tool]['total']--  //subtract a tool for breaking
+		items[categoryin]['tools'][current_tool]['durability'] += items[categoryin]['tools'][current_tool]['max_durability']; //set the durability for the next tool to its maximum value
+		if (items[categoryin]['tools'][current_tool]['total'] === 0){ //unequip the tool if there are none left
+			for (k = 0; k <= skillprops[categoryin]['tooltype'].length - 1; k++) { //loop that equips the highest possible level tool if the last current one breaks
+				var toolname = skillprops[categoryin]['tooltype'][k];
+				if (items[categoryin]['tools'][toolname]['total'] > 0 && skillprops[categoryin]['level'] >= items[categoryin]['tools'][toolname]['level']) { //makes sure there is a spare tool that the hero is high enough to use
+					skillprops[categoryin]['current_tool'][1] = toolname; //equip new tool
+					skillprops[categoryin]['current_tool'][0] = items[categoryin]['tools'][toolname]['name']; //equip new tool (show name)
+				}
 			}
 		}
 	}
+}
+
+//this will gain xp for the user and add a level if xp is exceeded
+//ex: categoryin = 'woodcutting', nodename='oak' (comes from gather_resource function)
+function gainxpandlevel(categoryin, subcategoryin, nodenamein){
+	var helperflag = false;
+	if  (skillprops[categoryin]['level'] % 11 !== 0) {
+		helperflag = true; //this checks to see if levelling up to a multiple of 11, we gain a worker
+	}
+	skillprops[categoryin]['experience'] += items[categoryin][subcategoryin][nodenamein]['experience']; //gain xp for gathering
+	if (skillprops[categoryin]['experience'] > xp_table[skillprops[categoryin]['level']]) {
+		skillprops[categoryin]['level']++ //if xp overflows in to the next level, add a new level
+		if (helperflag === true && skillprops[categoryin]['level'] % 11 === 0) {
+			skillprops[categoryin]['workers'][0]++ //if dinged level XX, add an idle worker
+		}	
+	}	
 }
 
 //this function is used to randomly generate a gem from mining
@@ -624,7 +935,7 @@ function update_display () {
 					document.getElementById(goodname).innerHTML = items[active_skill[0]][subcategory][item]['total'];
 					goodname = item + active_skill[1] + '.durability'; //e.g. bronze_pickaxe.durability
 					document.getElementById(goodname).innerHTML = items[active_skill[0]][subcategory][item]['durability'];
-				} else {
+				} else if (items[active_skill[0]][subcategory][item]['total'] !== 'none') {
 					goodname = item + '.total'; //e.g. copper.total
 					document.getElementById(goodname).innerHTML = items[active_skill[0]][subcategory][item]['total'];
 				}
@@ -635,9 +946,11 @@ function update_display () {
 	goodname = 'idle_' + active_skill[0] + '_workers';
 	document.getElementById(goodname).innerHTML = skillprops[active_skill[0]]['workers'][0];
 	
-	//display equipped tool, level, XP
-	goodname = active_skill[0] + '_tool';
-	document.getElementById(goodname).innerHTML = skillprops[active_skill[0]]['current_tool'][0];
+	//display equipped tool (gathering skills), level, XP
+	if (active_skill[0] === 'woodcutting' || active_skill[0] === 'mining'){
+		goodname = active_skill[0] + '_tool';
+		document.getElementById(goodname).innerHTML = skillprops[active_skill[0]]['current_tool'][0];
+	}
 	goodname = 'hero_' + active_skill[0] + '_level';
 	document.getElementById(goodname).innerHTML = skillprops[active_skill[0]]['level'];
 	goodname = 'hero_' + active_skill[0] + '_xp';
@@ -647,10 +960,9 @@ function update_display () {
 window.setInterval(function(){
 	
 	update_display();
-	hero_gather_resource();
-	gather_resource('woodcutting', 'log_types');
-	gather_resource('mining', 'ore_types');
-	
+	woodcutting();
+	mining();
+	fishing();
 }, 10);
 
 function prettify(input){ //currently not used, I'll have to see if I get any weird decimals in important values later.

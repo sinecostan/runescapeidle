@@ -9,6 +9,7 @@
 <ul class="tab">
   <li><a href="#" class="tablinks" onclick="openskill(event, 'mining', '_pickaxe')">Mining</a></li>
   <li><a href="#" class="tablinks" onclick="openskill(event, 'woodcutting', '_hatchet')">Woodcutting</a></li>
+  <li><a href="#" class="tablinks" onclick="openskill(event, 'fishing', '')">Fishing</a></li>
 </ul>
 
 <div id='mining' class='tabcontent'> <!--DIV for the mining skill-->
@@ -63,7 +64,6 @@
 <div class='bottomicontext rst'>Diamond(u)</div> </button> <br>
 
 <p class='rst' style='font-size:125%'>
-hero location: <span id="hero_mining_location"></span>  <br>
 <span id="idle_mining_workers"></span> idle miners <br>
 current pickaxe: <span id="mining_tool"></span><br>
 mining level: <span id="hero_mining_level"></span><br> 
@@ -103,77 +103,77 @@ mining xp: <span id="hero_mining_xp"></span><br>
 <div class='trnumber rst'><span id="dragon_pickaxe.durability"></span></div> </button>
 <br>
 
-<button class='resource' style="background-image:url(images/rocks/Copper-rock.png);" onClick="heronode('mining', 'ore_types', 'copper', 1)"> <!--tree-->
+<button class='resource' style="background-image:url(images/rocks/Copper-rock.png);"> <!--tree-->
 <div class='bottomresourcetext rst'>COPPER</div> 
 <div class='trnumberresource rst'><span id="copper_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 1)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 1)"> </button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 1, 'copper')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 1, 'copper')"> </button>
 </span>
 	
-<button class='resource' style="background-image:url(images/rocks/Tin-rock.png);" onClick="heronode('mining', 'ore_types', 'tin', 2)"> <!--oak_tree-->
+<button class='resource' style="background-image:url(images/rocks/Tin-rock.png);"> <!--oak_tree-->
 <div class='bottomresourcetext rst'>TIN</div>
 <div class='trnumberresource rst'><span id="tin_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 2)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 2)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 2, 'tin')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 2, 'tin')"></button>
 </span>
 	
-<button class='resource' style="background-image:url(images/rocks/Iron-rock.png);" onClick="heronode('mining', 'ore_types', 'iron', 3)"> <!--willow_tree-->
+<button class='resource' style="background-image:url(images/rocks/Iron-rock.png);"> <!--willow_tree-->
 <div class='bottomresourcetext rst'>IRON</div>
 <div class='trnumberresource rst'><span id="iron_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 3)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 3)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 3, 'iron')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 3, 'iron')"></button>
 </span>
 	
-<button class='resource' style="background-image:url(images/rocks/Silver-rock.png);" onClick="heronode('mining', 'ore_types', 'silver', 4)"> <!--teak_tree-->
+<button class='resource' style="background-image:url(images/rocks/Silver-rock.png);"> <!--teak_tree-->
 <div class='bottomresourcetext rst'>SILVER</div>
 <div class='trnumberresource rst'><span id="silver_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 4)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 4)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 4, 'silver')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 4, 'silver')"></button>
 </span>
 
-<button class='resource' style="background-image:url(images/rocks/Coal-rock.png);" onClick="heronode('mining', 'ore_types', 'coal', 5)"> <!--maple_tree-->
+<button class='resource' style="background-image:url(images/rocks/Coal-rock.png);"> <!--maple_tree-->
 <div class='bottomresourcetext rst'>COAL</div>
 <div class='trnumberresource rst'><span id="coal_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 5)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 5)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 5, 'coal')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 5, 'coal')"></button>
 </span>	
 	
 <br>
-<button class='resource' style="background-image:url(images/rocks/Gold-rock.png);" onClick="heronode('mining', 'ore_types', 'gold', 6)"> <!--mahogany_tree-->
+<button class='resource' style="background-image:url(images/rocks/Gold-rock.png);"> <!--mahogany_tree-->
 <div class='bottomresourcetext rst'>GOLD</div>
 <div class='trnumberresource rst'><span id="gold_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 6)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 6)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 6, 'gold')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 6, 'gold')"></button>
 </span>
 
-<button class='resource' style="background-image:url(images/rocks/Mithrite-rock.png);" onClick="heronode('mining', 'ore_types', 'mithril', 7)"> <!--yew_tree-->
+<button class='resource' style="background-image:url(images/rocks/Mithrite-rock.png);"> <!--yew_tree-->
 <div class='bottomresourcetext rst'>MITHRITE</div>
 <div class='trnumberresource rst'><span id="mithril_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 7)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 7)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 7, 'mithril')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 7, 'mithril')"></button>
 </span>
 
-<button class='resource' style="background-image:url(images/rocks/Adamantite-rock.png);" onClick="heronode('mining', 'ore_types', 'adamantite', 8)"> <!--magic_tree-->
+<button class='resource' style="background-image:url(images/rocks/Adamantite-rock.png);"> <!--magic_tree-->
 <div class='bottomresourcetext rst'>ADAMANTITE</div>
 <div class='trnumberresource rst'><span id="adamantite_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 8)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 8)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 8, 'adamantite')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 8, 'adamantite')"></button>
 </span>
 
-<button class='resource' style="background-image:url(images/rocks/Runite-rock.png);" onClick="heronode('mining', 'ore_types', 'runite', 9)"> <!--elder_tree-->
+<button class='resource' style="background-image:url(images/rocks/Runite-rock.png);"> <!--elder_tree-->
 <div class='bottomresourcetext rst'>RUNITE</div>
 <div class='trnumberresource rst'><span id="runite_mining_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('mining', 'ore_types', 9)"></button>
-	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 9)"></button>
+	<button class='uparrow' onClick="addworker('mining', 'ore_types', 9, 'runite')"></button>
+	<button class='downarrow' onClick="removeworker('mining', 'ore_types', 9, 'runite')"></button>
 </span>
 
 </div>
@@ -218,7 +218,6 @@ mining xp: <span id="hero_mining_xp"></span><br>
 <div class='bottomicontext rst'>Elder Logs</div> </button> <br>
 
 <p class='rst' style='font-size:125%'>
-hero location: <span id="hero_woodcutting_location"></span>  <br>
 <span id="idle_woodcutting_workers"></span> idle woodcutters <br>
 current hatchet: <span id="woodcutting_tool"></span><br>
 woodcutting level: <span id="hero_woodcutting_level"></span><br> 
@@ -262,79 +261,264 @@ woodcutting xp: <span id="hero_woodcutting_xp"></span><br>
 <div class='trnumber rst'><span id="dragon_hatchet.durability"></span></div> </button>
 <br>
 
-<button class='resource' style="background-image:url(images/trees/Logs_tree.png);" onClick="heronode('woodcutting', 'log_types', 'logs', 1)"> <!--tree-->
+<button class='resource' style="background-image:url(images/trees/Logs_tree.png);"> <!--tree-->
 <div class='bottomicontext rst'>(LOGS) TREE </div> 
 <div class='trnumberresource rst'><span id="logs_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 1)">  <!--tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 1)">  <!--tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 1, 'logs')">  <!--tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 1, 'logs')">  <!--tree--> </button>
 </span>
 	
-<button class='resource' style="background-image:url(images/trees/Oak_tree.png);" onClick="heronode('woodcutting', 'log_types', 'oak', 2)"> <!--oak_tree-->
+<button class='resource' style="background-image:url(images/trees/Oak_tree.png);"> <!--oak_tree-->
 <div class='bottomresourcetext rst'>OAK TREE</div>
 <div class='trnumberresource rst'><span id="oak_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 2)">  <!--oak_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 2)">  <!--oak_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 2, 'oak')">  <!--oak_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 2, 'oak')">  <!--oak_tree--> </button>
 </span>
 	
-<button class='resource' style="background-image:url(images/trees/Willow_tree.png);" onClick="heronode('woodcutting', 'log_types', 'willow', 3)"> <!--willow_tree-->
+<button class='resource' style="background-image:url(images/trees/Willow_tree.png);"> <!--willow_tree-->
 <div class='bottomresourcetext rst'>WILLOW TREE</div>
 <div class='trnumberresource rst'><span id="willow_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 3)">  <!--willow_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 3)">  <!--willow_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 3, 'willow')">  <!--willow_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 3, 'willow')">  <!--willow_tree--> </button>
 </span>
 	
-<button class='resource' style="background-image:url(images/trees/Teak_tree.png);" onClick="heronode('woodcutting', 'log_types', 'teak', 4)"> <!--teak_tree-->
+<button class='resource' style="background-image:url(images/trees/Teak_tree.png);"> <!--teak_tree-->
 <div class='bottomresourcetext rst'>TEAK TREE</div>
 <div class='trnumberresource rst'><span id="teak_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 4)">  <!--teak_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 4)">  <!--teak_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 4, 'teak')">  <!--teak_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 4, 'teak')">  <!--teak_tree--> </button>
 </span>
 
-<button class='resource' style="background-image:url(images/trees/Maple_tree.png);" onClick="heronode('woodcutting', 'log_types', 'maple', 5)"> <!--maple_tree-->
+<button class='resource' style="background-image:url(images/trees/Maple_tree.png);"> <!--maple_tree-->
 <div class='bottomresourcetext rst'>MAPLE TREE</div>
 <div class='trnumberresource rst'><span id="maple_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 5)">  <!--maple_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 5)">  <!--maple_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 5, 'maple')">  <!--maple_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 5, 'maple')">  <!--maple_tree--> </button>
 </span>	
 	
 <br>
-<button class='resource' style="background-image:url(images/trees/Mahogany_tree.png);" onClick="heronode('woodcutting', 'log_types', 'mahogany', 6)"> <!--mahogany_tree-->
+<button class='resource' style="background-image:url(images/trees/Mahogany_tree.png);"> <!--mahogany_tree-->
 <div class='bottomresourcetext rst'>MAHOGANY TREE</div>
 <div class='trnumberresource rst'><span id="mahogany_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 6)">  <!--mahogany_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 6)">  <!--mahogany_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 6, 'mahogany')">  <!--mahogany_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 6, 'mahogany')">  <!--mahogany_tree--> </button>
 </span>
 
-<button class='resource' style="background-image:url(images/trees/Yew_tree.png);" onClick="heronode('woodcutting', 'log_types', 'yew', 7)"> <!--yew_tree-->
+<button class='resource' style="background-image:url(images/trees/Yew_tree.png);"> <!--yew_tree-->
 <div class='bottomresourcetext rst'>YEW TREE</div>
 <div class='trnumberresource rst'><span id="yew_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 7)">  <!--yew_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 7)">  <!--yew_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 7, 'yew')">  <!--yew_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 7, 'yew')">  <!--yew_tree--> </button>
 </span>
 
-<button class='resource' style="background-image:url(images/trees/Magic_tree.png);" onClick="heronode('woodcutting', 'log_types', 'magic', 8)"> <!--magic_tree-->
+<button class='resource' style="background-image:url(images/trees/Magic_tree.png);"> <!--magic_tree-->
 <div class='bottomresourcetext rst'>MAGIC TREE</div>
 <div class='trnumberresource rst'><span id="magic_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 8)">  <!--magic_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 8)">  <!--magic_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 8, 'magic')">  <!--magic_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 8, 'magic')">  <!--magic_tree--> </button>
 </span>
 
-<button class='resource' style="background-image:url(images/trees/Elder_tree.png);" onClick="heronode('woodcutting', 'log_types', 'elder', 9)"> <!--elder_tree-->
+<button class='resource' style="background-image:url(images/trees/Elder_tree.png);" > <!--elder_tree-->
 <div class='bottomresourcetext rst'>ELDER TREE</div>
 <div class='trnumberresource rst'><span id="elder_woodcutting_workers"></span></div> </button>
 <span style="display: inline-block; width: 37px; vertical-align: bottom;">
-	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 9)">  <!--elder_tree--> </button>
-	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 9)">  <!--elder_tree--> </button>
+	<button class='uparrow' onClick="addworker('woodcutting', 'log_types', 9, 'elder')">  <!--elder_tree--> </button>
+	<button class='downarrow' onClick="removeworker('woodcutting', 'log_types', 9, 'elder')">  <!--elder_tree--> </button>
 </span>
 </div> <!--DIV for the woodcutting skill-->
+
+<div id='fishing' class='tabcontent'> <!--DIV for the fishing skill-->
+
+<p class='rst' style='font-size:125%'>
+<span id="idle_fishing_workers"></span> idle fishers <br>
+fishing level: <span id="hero_fishing_level"></span><br> 
+fishing xp: <span id="hero_fishing_xp"></span><br>
+</p>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/Small_fishing_net.png);">
+<div class='tlnumber rst'><span id="small_fishing_net.total"></span></div>
+<div class='trnumber rst'><span id="small_fishing_net.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/Fishing_rod.png);">
+<div class='tlnumber rst'><span id="fishing_rod.total"></span></div>
+<div class='trnumber rst'><span id="fishing_rod.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/Fishing_bait.png);">
+<div class='tlnumber rst'><span id="fishing_bait.total"></span></div>
+<div class='trnumber rst'><span id="fishing_bait.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/fly_fishing_rod.png);">
+<div class='tlnumber rst'><span id="fly_fishing_rod.total"></span></div>
+<div class='trnumber rst'><span id="fly_fishing_rod.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/feather.png);">
+<div class='tlnumber rst'><span id="feather.total"></span></div>
+<div class='trnumber rst'><span id="feather.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/big_fishing_net.png);">
+<div class='tlnumber rst'><span id="big_fishing_net.total"></span></div>
+<div class='trnumber rst'><span id="big_fishing_net.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/harpoon.png);">
+<div class='tlnumber rst'><span id="harpoon.total"></span></div>
+<div class='trnumber rst'><span id="harpoon.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/lobster_pot.png);">
+<div class='tlnumber rst'><span id="lobster_pot.total"></span></div>
+<div class='trnumber rst'><span id="lobster_pot.durability"></span></div></button>
+
+<button class='itemicon' style="background-image:url(images/fishing_tools/living_minerals.png);">
+<div class='tlnumber rst'><span id="living_minerals.total"></span></div>
+<div class='trnumber rst'><span id="living_minerals.durability"></span></div></button>
+
+<br>
+
+<button class='resource' style="background-image:url(images/fishing_tools/small_fishing_net_detail.png);" > 
+<div class='bottomicontext rst'>Small Net Fishing </div> 
+<div class='trnumberresource rst'><span id="small_net_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 1, 'small_net')">  <!--tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 1, 'small_net')">  <!--tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_shrimps.png)" class='itemicon' id="raw_shrimps_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_shrimps')">
+<div class='tlnumber rst'><span id="raw_shrimps.total"></span></div>
+<div class='bottomicontext rst'>Raw Shrimps</div> </button>
+<button style="background-image:url(images/raw_fish/raw_anchovies.png)" class='itemicon' id="raw_anchovies_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_anchovies')">
+<div class='tlnumber rst'><span id="raw_anchovies.total"></span></div>
+<div class='bottomicontext rst'>Raw Anch.</div> </button>
+<button style="background-image:url(images/raw_fish/raw_monkfish.png)" class='itemicon' id="raw_monkfish_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_monkfish')">
+<div class='tlnumber rst'><span id="raw_monkfish.total"></span></div>
+<div class='bottomicontext rst'>Raw monkfish</div> </button>
+	
+<button class='resource' style="background-image:url(images/fishing_tools/fishing_rod_detail.png);" > 
+<div class='bottomresourcetext rst'>Rod/Bait Fishing (Salt)</div>
+<div class='trnumberresource rst'><span id="bait_rod_salt_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 2, 'bait_rod_salt')">  <!--oak_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 2, 'bait_rod_salt')">  <!--oak_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_sardine.png)" class='itemicon' id="raw_sardine_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_sardine')">
+<div class='tlnumber rst'><span id="raw_sardine.total"></span></div>
+<div class='bottomicontext rst'>Raw sardine</div> </button>
+<button style="background-image:url(images/raw_fish/raw_herring.png)" class='itemicon' id="raw_herring_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_herring')">
+<div class='tlnumber rst'><span id="raw_herring.total"></span></div>
+<div class='bottomicontext rst'>Raw herring</div> </button>
+	
+<button class='resource' style="background-image:url(images/fishing_tools/fishing_rod_detail.png);" > 
+<div class='bottomresourcetext rst'>Rod/Bait Fishing (Fresh)</div>
+<div class='trnumberresource rst'><span id="bait_rod_fresh_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 3, 'bait_rod_fresh')">  <!--willow_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 3, 'bait_rod_fresh')">  <!--willow_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_pike.png)" class='itemicon_active' id="raw_pike_button">
+<div class='tlnumber rst'><span id="raw_pike.total"></span></div>
+<div class='bottomicontext rst'>Raw pike</div> </button>
+
+<br>
+
+<button class='resource' style="background-image:url(images/fishing_tools/big_fishing_net_detail.png);"> 
+<div class='bottomresourcetext rst'>Big Net Fishing</div>
+<div class='trnumberresource rst'><span id="big_net_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 4, 'big_net')">  <!--teak_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 4, 'big_net')">  <!--teak_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_mackerel.png)" class='itemicon' id="raw_mackerel_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_mackerel')">
+<div class='tlnumber rst'><span id="raw_mackerel.total"></span></div>
+<div class='bottomicontext rst'>Raw mackerel</div> </button>
+<button style="background-image:url(images/raw_fish/raw_cod.png)" class='itemicon' id="raw_cod_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_cod')">
+<div class='tlnumber rst'><span id="raw_cod.total"></span></div>
+<div class='bottomicontext rst'>Raw cod</div> </button>
+<button style="background-image:url(images/raw_fish/raw_bass.png)" class='itemicon' id="raw_bass_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_bass')">
+<div class='tlnumber rst'><span id="raw_bass.total"></span></div>
+<div class='bottomicontext rst'>Raw bass</div> </button>
+
+<button class='resource' style="background-image:url(images/fishing_tools/fly_fishing_rod_detail.png);"> 
+<div class='bottomresourcetext rst'>Fly/Feather Fishing</div>
+<div class='trnumberresource rst'><span id="fly_rod_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 5, 'fly_rod')">  <!--maple_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 5, 'fly_rod')">  <!--maple_tree--> </button>
+</span>	
+
+<button style="background-image:url(images/raw_fish/raw_trout.png)" class='itemicon' id="raw_trout_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_trout')">
+<div class='tlnumber rst'><span id="raw_trout.total"></span></div>
+<div class='bottomicontext rst'>Raw trout</div> </button>
+<button style="background-image:url(images/raw_fish/raw_salmon.png)" class='itemicon' id="raw_salmon_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_salmon')">
+<div class='tlnumber rst'><span id="raw_salmon.total"></span></div>
+<div class='bottomicontext rst'>Raw salmon</div> </button>
+
+
+<button class='resource' style="background-image:url(images/fishing_tools/harpoon_detail.png);" >
+<div class='bottomresourcetext rst'>Harpoon Fishing</div>
+<div class='trnumberresource rst'><span id="harpoon_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 6, 'harpoon')">  <!--mahogany_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 6, 'harpoon')">  <!--mahogany_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_tuna.png)" class='itemicon' id="raw_tuna_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_tuna')">
+<div class='tlnumber rst'><span id="raw_tuna.total"></span></div>
+<div class='bottomicontext rst'>Raw tuna</div> </button>
+<button style="background-image:url(images/raw_fish/raw_swordfish.png)" class='itemicon' id="raw_swordfish_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_swordfish')">
+<div class='tlnumber rst'><span id="raw_swordfish.total"></span></div>
+<div class='bottomicontext rst'>Raw sword</div> </button>
+<button style="background-image:url(images/raw_fish/raw_shark.png)" class='itemicon' id="raw_shark_button" onClick="selectnoderesource('fishing', 'raw_fish_types', 'raw_shark')">
+<div class='tlnumber rst'><span id="raw_shark.total"></span></div>
+<div class='bottomicontext rst'>Raw shark</div> </button>
+
+<br>
+
+<button class='resource' style="background-image:url(images/fishing_tools/lobster_pot_detail.png);" > 
+<div class='bottomresourcetext rst'>Cage Fishing</div>
+<div class='trnumberresource rst'><span id="cage_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 7, 'cage')">  <!--yew_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 7, 'cage')">  <!--yew_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_lobster.png)" class='itemicon_active' id="raw_lobster_button">
+<div class='tlnumber rst'><span id="raw_lobster.total"></span></div>
+<div class='bottomicontext rst'>Raw lobster</div> </button>
+
+<button class='resource' style="background-image:url(images/fishing_tools/fishing_bait_detail.png);" > 
+<div class='bottomresourcetext rst'>Rock Cavern Bait Fishing</div>
+<div class='trnumberresource rst'><span id="rock_bait_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 8, 'rock_bait')">  <!--magic_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 8, 'rock_bait')">  <!--magic_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_cavefish.png)" class='itemicon_active' id="raw_cavefish_button">
+<div class='tlnumber rst'><span id="raw_cavefish.total"></span></div>
+<div class='bottomicontext rst'>Raw cavefish</div> </button>
+
+<button class='resource' style="background-image:url(images/fishing_tools/living_minerals_detail.png);" > 
+<div class='bottomresourcetext rst'>Rock Cavern Mineral Fishing</div>
+<div class='trnumberresource rst'><span id="rock_minerals_fishing_workers"></span></div> </button>
+<span style="display: inline-block; width: 37px; vertical-align: bottom;">
+	<button class='uparrow' onClick="addworker('fishing', 'raw_fish_types', 9, 'rock_minerals')">  <!--elder_tree--> </button>
+	<button class='downarrow' onClick="removeworker('fishing', 'raw_fish_types', 9, 'rock_minerals')">  <!--elder_tree--> </button>
+</span>
+
+<button style="background-image:url(images/raw_fish/raw_rocktail.png)" class='itemicon_active' id="raw_rocktail_button">
+<div class='tlnumber rst'><span id="raw_rocktail.total"></span></div>
+<div class='bottomicontext rst'>Raw rocktail</div> </button>
+
+</div> <!--DIV for the fishing skill-->
 
 
 <script type="text/javascript" src="main.js"></script>
